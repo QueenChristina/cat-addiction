@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/RingUp.wav-8c9f7daa7e1aa23b2aaeb5cb48ac6337.sample"
+
+[deps]
+
+source_file="res://assets/audio/RingUp.wav"
+dest_files=[ "res://.import/RingUp.wav-8c9f7daa7e1aa23b2aaeb5cb48ac6337.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0
