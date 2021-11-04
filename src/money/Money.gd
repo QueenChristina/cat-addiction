@@ -4,6 +4,8 @@ export var coin_value := 1
 export var cash_value := 5
 export var chance_cash := 0.3 # between 0 and 1 chance, TODO: chance increase with upgrades
 
+signal play_sound(type)
+
 var type
 var consty
 var t = 0
@@ -13,15 +15,14 @@ var deltax
 var a = 0.2
 #var OFFSET_X = 4
 var OFFSET_Y = 7
+var pitch = 1
 #var cling = load("res://Audio/Cling.wav")
 
-onready var Sound = $Sound
 onready var Icon = $Type
 onready var tween = $Tween
 onready var shape = $CollisionShape2D
 
 func _ready():
-#	Sound.stream = cling
 	shape.disabled = true
 	switchType("coin")
 	if rand_range(0, 1) < chance_cash:
@@ -49,7 +50,7 @@ func set_pos():
 
 	tween.interpolate_property(self, "global_position", 
 		self.global_position, 
-		Vector2(self.global_position.x + OFFSET_X, stopy), rand_range(0.2, 0.8), Tween.TRANS_QUAD, Tween.EASE_IN)
+		Vector2(self.global_position.x + OFFSET_X, stopy), rand_range(0.2, 0.6), Tween.TRANS_QUAD, Tween.EASE_IN)
 	tween.start()
 	
 #func _process(delta):
@@ -61,7 +62,7 @@ func set_pos():
 #		t += 1
 
 func _on_mouse_entered():
-	Sound.play()
+	emit_signal("play_sound", "money", pitch)
 	if type == "coin":
 		Globals.bank += coin_value
 	elif type == "cash":
@@ -72,9 +73,11 @@ func switchType(type):
 	self.type = type
 	Icon.animation = type
 	if type == "cash":
-		Sound.set_pitch_scale(rand_range(1.8, 2.2))
+#		Sound.set_pitch_scale(rand_range(1.8, 2.2))
+		pitch = rand_range(1.8, 2.2)
 	elif type == "coin":
-		Sound.set_pitch_scale(rand_range(0.5, 1.5))
+#		Sound.set_pitch_scale(rand_range(0.5, 1.5))
+		pitch = rand_range(0.5, 1.5)
 
 func _on_tween_completed(object, key):
 	shape.disabled = false

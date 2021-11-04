@@ -1,0 +1,198 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://assets/bg/NormalBackground.png" type="Texture" id=1]
+[ext_resource path="res://assets/bg/Night.png" type="Texture" id=2]
+[ext_resource path="res://assets/bg/clouds.png" type="Texture" id=3]
+[ext_resource path="res://assets/bg/Sky.png" type="Texture" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "NightCycle"
+length = 50.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("NightOverlay:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 22.8, 39.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 45.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Midground/Cloud:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 10, 45.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1.64034, 12.5538 ), Vector2( 55, 12.554 ), Vector2( 55, 12.554 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Midground/Cloud7:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.8, 7, 45.2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -5.883, 44 ), Vector2( 55, 44 ), Vector2( 55, 44 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Midground/Cloud3:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = false
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 10, 19.3, 45.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -8.7747, 36.5539 ), Vector2( -1.64034, 36.5538 ), Vector2( 55, 36.554 ), Vector2( 55, 36.554 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Midground/Cloud6:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = false
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 13.2, 23.8, 45.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -9.01769, -0.4462 ), Vector2( -1.64034, -0.4462 ), Vector2( 58.3597, -0.4462 ), Vector2( 58.3597, -0.4462 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Midground/Cloud5:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = false
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0, 8.6, 30.5, 45.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -13.6403, 13.5538 ), Vector2( -13.6403, 13.5538 ), Vector2( 57.3597, 13.5538 ), Vector2( 57.3597, 13.5538 ) ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Midground/Cloud4:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = false
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0, 28.2, 40, 45.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -4.64034, 25.5538 ), Vector2( -4.64034, 25.5538 ), Vector2( 55.3597, 25.5538 ), Vector2( 55.3597, 25.5538 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Midground/Cloud2:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = false
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0, 15.2, 40, 45.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -1.64034, 23.5538 ), Vector2( -1.64034, 23.5538 ), Vector2( 54.3597, 23.5538 ), Vector2( 54.3597, 23.5538 ) ]
+}
+
+[node name="Background" type="CanvasLayer"]
+layer = -1
+
+[node name="Sky" type="Sprite" parent="."]
+position = Vector2( 5.03968, 16.5365 )
+texture = ExtResource( 4 )
+centered = false
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="NightOverlay" type="Sprite" parent="Sky"]
+texture = ExtResource( 2 )
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sky"]
+autoplay = "NightCycle"
+playback_speed = 0.1
+anims/NightCycle = SubResource( 1 )
+
+[node name="Midground" type="Node2D" parent="."]
+position = Vector2( 5.80594, 15.7322 )
+
+[node name="Cloud" type="Sprite" parent="Midground"]
+modulate = Color( 1, 1, 1, 0.705882 )
+position = Vector2( 55, 12.554 )
+texture = ExtResource( 3 )
+hframes = 3
+vframes = 2
+
+[node name="Cloud2" type="Sprite" parent="Midground"]
+modulate = Color( 1, 1, 1, 0.462745 )
+position = Vector2( 54.3597, 23.5538 )
+texture = ExtResource( 3 )
+hframes = 3
+vframes = 2
+frame = 3
+
+[node name="Cloud3" type="Sprite" parent="Midground"]
+modulate = Color( 1, 1, 1, 0.807843 )
+position = Vector2( 55, 36.554 )
+texture = ExtResource( 3 )
+hframes = 3
+vframes = 2
+frame = 2
+
+[node name="Cloud4" type="Sprite" parent="Midground"]
+modulate = Color( 1, 1, 1, 0.831373 )
+position = Vector2( 55.3597, 25.5538 )
+texture = ExtResource( 3 )
+hframes = 3
+vframes = 2
+frame = 5
+
+[node name="Cloud5" type="Sprite" parent="Midground"]
+modulate = Color( 1, 1, 1, 0.631373 )
+position = Vector2( 57.3597, 13.5538 )
+texture = ExtResource( 3 )
+hframes = 3
+vframes = 2
+frame = 4
+
+[node name="Cloud6" type="Sprite" parent="Midground"]
+modulate = Color( 1, 1, 1, 0.807843 )
+position = Vector2( 58.3597, -0.4462 )
+texture = ExtResource( 3 )
+hframes = 3
+vframes = 2
+
+[node name="Cloud7" type="Sprite" parent="Midground"]
+modulate = Color( 1, 1, 1, 0.819608 )
+position = Vector2( 55, 44 )
+texture = ExtResource( 3 )
+hframes = 3
+vframes = 2
+frame = 1
+
+[node name="CloudPlayer" type="AnimationPlayer" parent="."]
+autoplay = "CloudFloating"
+playback_speed = 0.2
+anims/CloudFloating = SubResource( 2 )
+
+[node name="Wall" type="Sprite" parent="."]
+z_index = 2
+texture = ExtResource( 1 )
+centered = false

@@ -1,9 +1,8 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/items/icons/Coin.png" type="Texture" id=1]
 [ext_resource path="res://assets/items/icons/Cash5.png" type="Texture" id=2]
 [ext_resource path="res://src/money/Money.gd" type="Script" id=3]
-[ext_resource path="res://assets/audio/Cling.wav" type="AudioStream" id=4]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -31,9 +30,7 @@ animation = "cash"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 2 )
 
-[node name="Sound" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource( 4 )
-
 [node name="Tween" type="Tween" parent="."]
+
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="tween_completed" from="Tween" to="." method="_on_tween_completed"]
