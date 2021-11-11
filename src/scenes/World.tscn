@@ -1,22 +1,21 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=22 format=2]
 
 [ext_resource path="res://assets/ui/Play.png" type="Texture" id=1]
 [ext_resource path="res://assets/ui/Pause.png" type="Texture" id=2]
 [ext_resource path="res://assets/ui/ShopIcon.png" type="Texture" id=3]
 [ext_resource path="res://src/bg/Background.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/ui/Shop.gd" type="Script" id=5]
-[ext_resource path="res://assets/ui/ShopBackground.png" type="Texture" id=6]
+[ext_resource path="res://src/items/InBag.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/player/Cat.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/ui/1980v202002.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://src/ui/clickableIcon.tscn" type="PackedScene" id=9]
 [ext_resource path="res://src/player/Globals.gd" type="Script" id=10]
 [ext_resource path="res://src/ui/SmolOrange.tres" type="Theme" id=11]
 [ext_resource path="res://src/ui/UI.gd" type="Script" id=12]
-[ext_resource path="res://src/shop/ItemContainer.tscn" type="PackedScene" id=13]
-[ext_resource path="res://src/shop/ShopPanel.gd" type="Script" id=14]
+[ext_resource path="res://assets/ui/bag.png" type="Texture" id=13]
+[ext_resource path="res://src/shop/Shop_Panel.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/audio/openShopBell.wav" type="AudioStream" id=15]
 [ext_resource path="res://assets/ui/gear.png" type="Texture" id=16]
-[ext_resource path="res://assets/audio/capslok__cash-register-fake.wav" type="AudioStream" id=17]
 
 [sub_resource type="DynamicFont" id=1]
 outline_size = 1
@@ -29,7 +28,7 @@ default_font = SubResource( 1 )
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 6, 5 )
 
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=4]
 animations = [ {
 "frames": [ ExtResource( 3 ) ],
 "loop": true,
@@ -37,7 +36,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=6]
+[sub_resource type="SpriteFrames" id=5]
 animations = [ {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
@@ -113,91 +112,22 @@ script = ExtResource( 5 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Margin/Shop"]
 shape = SubResource( 3 )
 
-[node name="Panel" type="NinePatchRect" parent="UI/Margin/Shop"]
-margin_left = -22.0
-margin_top = 3.0
-margin_right = 92.0
-margin_bottom = 166.0
-texture = ExtResource( 6 )
-script = ExtResource( 14 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Exit" parent="UI/Margin/Shop/Panel" instance=ExtResource( 9 )]
-position = Vector2( 100.409, 13.0815 )
-
-[node name="GridContainer" type="GridContainer" parent="UI/Margin/Shop/Panel"]
-margin_left = 10.0
-margin_top = 20.0
-margin_right = 104.0
-margin_bottom = 151.0
-custom_constants/vseparation = 4
-custom_constants/hseparation = 4
-columns = 4
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="ItemContainer" parent="UI/Margin/Shop/Panel/GridContainer" instance=ExtResource( 13 )]
-
-[node name="ItemContainer2" parent="UI/Margin/Shop/Panel/GridContainer" instance=ExtResource( 13 )]
-margin_left = 24.0
-margin_right = 44.0
-
-[node name="NameTag" type="RichTextLabel" parent="UI/Margin/Shop/Panel"]
-margin_left = 10.0
-margin_top = 93.0
-margin_right = 105.0
-margin_bottom = 104.0
-theme = ExtResource( 11 )
-custom_colors/default_color = Color( 0.74902, 0.247059, 0.156863, 1 )
-bbcode_enabled = true
-bbcode_text = "Weed   $420"
-text = "Weed   $420"
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Description" type="RichTextLabel" parent="UI/Margin/Shop/Panel"]
-margin_left = 10.0
-margin_top = 103.0
-margin_right = 105.0
-margin_bottom = 140.0
-theme = ExtResource( 11 )
-custom_colors/default_color = Color( 0.866667, 0.458824, 0.247059, 1 )
-bbcode_enabled = true
-bbcode_text = "A magnificent beast of wonder and beauty."
-text = "A magnificent beast of wonder and beauty."
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Buy" type="Button" parent="UI/Margin/Shop/Panel"]
-margin_left = 24.0
-margin_top = 140.0
-margin_right = 92.0
-margin_bottom = 154.0
-theme = ExtResource( 11 )
-custom_colors/font_color = Color( 0.992157, 0.819608, 0.301961, 1 )
-custom_colors/font_color_hover = Color( 0.866667, 0.458824, 0.247059, 1 )
-custom_colors/font_color_pressed = Color( 0.992157, 0.819608, 0.301961, 1 )
-disabled = true
-text = "Buy"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="UI/Margin/Shop/Panel/Buy"]
-stream = ExtResource( 17 )
+[node name="Panel" parent="UI/Margin/Shop" instance=ExtResource( 14 )]
+visible = false
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = -22.0486
+margin_top = 3.46478
+margin_right = 91.9514
+margin_bottom = 166.465
 
 [node name="shopSound" type="AudioStreamPlayer" parent="UI/Margin/Shop"]
 stream = ExtResource( 15 )
 
 [node name="Icon" type="AnimatedSprite" parent="UI/Margin/Shop"]
-frames = SubResource( 5 )
+frames = SubResource( 4 )
 
 [node name="Bank" type="Node2D" parent="UI/Margin/Shop/Icon"]
 script = ExtResource( 10 )
@@ -210,14 +140,29 @@ texture = ExtResource( 16 )
 
 [node name="Play" type="AnimatedSprite" parent="UI/Margin"]
 visible = false
-frames = SubResource( 6 )
+frames = SubResource( 5 )
 animation = "pause"
 
 [node name="bgMusic" type="AudioStreamPlayer" parent="UI/Margin/Play"]
 
+[node name="Bag" parent="UI/Margin" instance=ExtResource( 9 )]
+position = Vector2( 29.85, 0.23597 )
+icon_type = "bag"
+make_visible_on_click = NodePath("InBag")
+
+[node name="Icon" parent="UI/Margin/Bag" index="0"]
+texture = ExtResource( 13 )
+
+[node name="InBag" parent="UI/Margin/Bag" instance=ExtResource( 6 )]
+visible = false
+
+[node name="Node" type="Node" parent="."]
+
 [connection signal="mouse_entered" from="UI/Margin/Shop" to="UI/Margin/Shop" method="_on_icon_mouse_entered"]
 [connection signal="mouse_exited" from="UI/Margin/Shop" to="UI/Margin/Shop" method="_on_icon_mouse_exited"]
-[connection signal="icon_pressed" from="UI/Margin/Shop/Panel/Exit" to="UI/Margin/Shop" method="_on_Exit_icon_pressed"]
-[connection signal="pressed" from="UI/Margin/Shop/Panel/Buy" to="UI/Margin/Shop/Panel" method="_on_BuyButton_pressed"]
+[connection signal="icon_pressed" from="UI/Margin/Bag" to="UI/Margin/Bag/InBag" method="_on_Bag_icon_pressed"]
+[connection signal="equip" from="UI/Margin/Bag/InBag" to="Cat" method="_on_equip"]
+[connection signal="unequip" from="UI/Margin/Bag/InBag" to="Cat" method="_on_unequip"]
 
 [editable path="UI/Margin/Settings"]
+[editable path="UI/Margin/Bag"]

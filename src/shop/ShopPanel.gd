@@ -5,6 +5,8 @@ onready var name_tag = $NameTag
 onready var description = $Description
 onready var buy_button = $Buy
 
+onready var item_display = preload("res://src/shop/ItemContainer.tscn")
+
 var selected_item
 
 # Called when the node enters the scene tree for the first time.
@@ -12,6 +14,31 @@ func _ready():
 	for item in items_grid.get_children():
 		item.connect("item_selected", self, "_on_item_selected", [item])
 		
+# TODO: parent should have the logic to control and populate shop panel
+# 	items: Takes in a dictionairy of items by item_id : amount
+# TODO: make amount matter - right now, amount is assumed to be 1
+func populate(item_ids):
+	for id in item_ids.keys():
+		var item = item_display.instance();
+		items_grid.add_child(item)
+		item.init(id)
+		item.connect("item_selected", self, "_on_item_selected", [item])
+	
+# Usually called before populate_shop to clear the shop of previos item displays
+func clear():
+	for item in items_grid.get_children():
+		item.queue_free()
+		
+# Called when open shop, to clear out previous selections and look pretty
+func open():
+	# Unselect all items
+	for item in items_grid.get_children():
+		item.state = "unselected"
+	# Update display text
+	name_tag.bbcode_text = "Welcome!"
+	description.bbcode_text = "Select an item to view and buy."
+	buy_button.disabled = true
+	
 func _on_item_selected(item_id, item):
 	# Unselect all items except selected
 	selected_item = item
@@ -31,13 +58,15 @@ func _on_item_selected(item_id, item):
 
 func _on_BuyButton_pressed():
 	buy_button.get_node("AudioStreamPlayer").play(0)
-	# Add item to inventory, remove from shop, and subtract price from bank
+	# remove from shop, and subtract price from bank
 	Globals.bank -= selected_item.price
-	if !Globals.inventory.has(selected_item.id):
-		Globals.inventory[selected_item.id] = 1
-	else:
-		Globals.inventory[selected_item.id] += 1
+	# Add item to inventory
+	Globals.add_to_inventory(selected_item.id)
 	selected_item.state = "bought"
 	name_tag.bbcode_text = ""
-	description.bbcode_text = "Thank you for your moooney!!!"
+	description.bbcode_text = "Thank you for your mooolah!!!"
 	buy_button.disabled = true
+
+
+func _on_Exit_icon_pressed(type):
+	self.visible = false

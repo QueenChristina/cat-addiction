@@ -24,6 +24,7 @@ export(float, EASE) var DAMP_EASING = 3.0
 onready var timer = $ShakeTimer
 onready var all_sprite = $Base/ShakeBase # Change position of sprite for shaking (default to 0)
 onready var hat_decor = $Base/ShakeBase/HatDecor # For shaking separately, (Default to one position)
+onready var mouth_decor = $Base/ShakeBase/MouthDecor # For shaking separately, (Default to one position)
 onready var sprite = $Base/ShakeBase/Sprite
 onready var sound_meow = $Mew
 
@@ -123,3 +124,15 @@ func _on_Sprite_animation_finished():
 	if sprite.animation == "meow":
 		_change_state(States.IDLE)
 		all_sprite.scale.x = -1 * all_sprite.scale.x
+
+func _on_equip(item_id, item_type):
+	if item_type == "hat":
+		hat_decor.animation = item_id # Assume matches item id
+	elif item_type == "mouth":
+		mouth_decor.animation = item_id
+
+func _on_unequip(item_type):
+	if item_type == "hat":
+		hat_decor.animation = "default"
+	elif item_type == "mouth":
+		mouth_decor.animation = "default"

@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://assets/ui/selectCubby.png" type="Texture" id=1]
-[ext_resource path="res://assets/items/hat/BorderedWeed.png" type="Texture" id=2]
 [ext_resource path="res://assets/ui/cubby.png" type="Texture" id=3]
 [ext_resource path="res://src/shop/ItemContainer.gd" type="Script" id=4]
 [ext_resource path="res://assets/audio/blip.wav" type="AudioStream" id=5]
+[ext_resource path="res://src/items/HatDecor.tscn" type="PackedScene" id=6]
+[ext_resource path="res://src/items/MouthDecor.tscn" type="PackedScene" id=7]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -46,6 +47,14 @@ tracks/0/keys = {
 "values": [ true, false, true ]
 }
 
+[sub_resource type="SpriteFrames" id=7]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
 [node name="ItemContainer" type="Button"]
 margin_right = 20.0
 margin_bottom = 20.0
@@ -80,10 +89,24 @@ autoplay = "not_selected"
 anims/not_selected = SubResource( 5 )
 anims/selected = SubResource( 6 )
 
-[node name="Item" type="Sprite" parent="."]
+[node name="Display" type="Node2D" parent="."]
+
+[node name="Item" type="AnimatedSprite" parent="Display"]
+visible = false
 position = Vector2( 4.06488, 4.06441 )
-texture = ExtResource( 2 )
+frames = SubResource( 7 )
 centered = false
+
+[node name="HatDecor" parent="Display" instance=ExtResource( 6 )]
+visible = false
+position = Vector2( 10, 10 )
+animation = "weed"
+
+[node name="MouthDecor" parent="Display" instance=ExtResource( 7 )]
+visible = false
+position = Vector2( 10, 10 )
+frame = 2
+playing = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )

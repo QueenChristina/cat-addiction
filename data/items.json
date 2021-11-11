@@ -1,0 +1,38 @@
+{
+    "item_id" : {
+        "name": "Name to be displayed on screen",
+        "price" : 100,
+        "description" : "Wearable weed of wonder. Say no more."
+    },
+    "weed" : {
+        "name": "Weed",
+        "price" : 420,
+        "description" : "Wearable weed of wonder. Say no more.",
+        "type" : "hat",
+    },
+    "pill" : {
+        "name": "Pill",
+        "price" : 10,
+        "description" : "Brain stuff.",
+        "type" : "hat",
+    },
+    "cig" : {
+        "name": "Cig",
+        "price" : 32,
+        "description" : "Mouth smoky.",
+        "type" : "mouth",
+    },
+    "line" : {
+        "name": "Line",
+        "price" : 32,
+        "description" : "A white line. Just a line. Definitely not snortable.",
+        "type" : "mouth",
+    },
+    "weed_costume" : {
+        "name": "Weed Cape",
+        "price" : 420,
+        "description" : "Wearable weed draped on your handsome shoulders.",
+        "type" : "hat",
+        "special_icon" : "NAME of special display icon - for items too big to fit in normal display",
+    }
+}
