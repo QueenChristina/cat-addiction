@@ -12,7 +12,7 @@
     },
     "pill" : {
         "name": "Pill",
-        "price" : 10,
+        "price" : 1,
         "description" : "Brain stuff.",
         "type" : "hat",
     },

@@ -62,6 +62,11 @@ func _on_BuyButton_pressed():
 	Globals.bank -= selected_item.price
 	# Add item to inventory
 	Globals.add_to_inventory(selected_item.id)
+	# Remove from future buyable items (TODO: calibrate amount)
+	Globals.buyable_items[selected_item.id] -= 1
+	if Globals.buyable_items[selected_item.id] <= 0:
+		Globals.buyable_items.erase(selected_item.id)
+	# Change shop text
 	selected_item.state = "bought"
 	name_tag.bbcode_text = ""
 	description.bbcode_text = "Thank you for your mooolah!!!"

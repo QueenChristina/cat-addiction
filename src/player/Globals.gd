@@ -6,6 +6,9 @@ export var chance_get_money = 0.1 # TODO: increase with upgrades, change money s
 var inventory = {"pill" : 1, "weed" : 1, "cig" : 1} # Format of item_id : amount
 var equipped = {"hat" : "", "mouth" : "", "body" : ""} # Equipped items of format type : item_id
 var items = {}
+var buyable_items = {"pill" : 1, "weed" : 1, "cig" : 1} # List of buyable items by
+# item_id : amount -- to be added to manually as you make more items and story
+# progresses and/or player gets richer
 
 func _ready():
 	items = loadFile("res://data/items.json")

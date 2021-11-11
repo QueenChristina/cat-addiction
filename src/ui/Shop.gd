@@ -1,6 +1,9 @@
 extends Area2D
 
+signal opened()
+
 var in_icon = false
+export var max_items_in_shop = 8 # TODO: upgradeable amount
 
 onready var icon = $Icon
 onready var shop_panel = $Panel
@@ -19,9 +22,13 @@ func _input(event):
 		if shop_panel.visible:
 			sound.stream = shopOpen
 			shop_panel.open()
+			emit_signal("opened")
 		else:
 			sound.stream = shopClose
 		sound.play(0)
+
+func close():
+	shop_panel.visible = false
 
 func _on_icon_mouse_entered():
 	icon.scale = Vector2(1.4, 1.4)
@@ -32,6 +39,22 @@ func _on_icon_mouse_exited():
 	in_icon = false
 
 func manage_shop():
-	shop_panel.open()
+	shop_panel.open() # Reformats text and animation to open shop type - NOT visibility
 	shop_panel.clear()
-	shop_panel.populate({"pill" : 1, "weed" : 2})
+	shop_panel.populate(spawn_items(max_items_in_shop))
+	
+# Returns a dictionary of random items of item_id : amount to spawn in shop
+# Use with manage_shop
+# up to num_items to spawn (constrained by number of available items): usually in multiples of x4
+var rng = RandomNumberGenerator.new()
+func spawn_items(num_items):
+	var items = {}
+	var num_to_spawn = num_items if Globals.buyable_items.size() > num_items else Globals.buyable_items.size()
+	var buyable_items = Globals.buyable_items.duplicate()
+	for i in range(num_to_spawn):
+		rng.randomize()
+		var rand_ind = rng.randi_range(0, buyable_items.size() - 1)
+		var item_id = buyable_items.keys()[rand_ind]
+		items[item_id] = buyable_items[item_id]
+		buyable_items.erase(item_id)
+	return items

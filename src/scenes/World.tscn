@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://assets/ui/Play.png" type="Texture" id=1]
 [ext_resource path="res://assets/ui/Pause.png" type="Texture" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://src/shop/Shop_Panel.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/audio/openShopBell.wav" type="AudioStream" id=15]
 [ext_resource path="res://assets/ui/gear.png" type="Texture" id=16]
+[ext_resource path="res://src/UIIcons.gd" type="Script" id=17]
 
 [sub_resource type="DynamicFont" id=1]
 outline_size = 1
@@ -25,18 +26,7 @@ font_data = ExtResource( 8 )
 [sub_resource type="Theme" id=2]
 default_font = SubResource( 1 )
 
-[sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 6, 5 )
-
-[sub_resource type="SpriteFrames" id=4]
-animations = [ {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
-
-[sub_resource type="SpriteFrames" id=5]
+[sub_resource type="SpriteFrames" id=3]
 animations = [ {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
@@ -46,6 +36,17 @@ animations = [ {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
 "name": "pause",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 6, 5 )
+
+[sub_resource type="SpriteFrames" id=5]
+animations = [ {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
 "speed": 5.0
 } ]
 
@@ -105,14 +106,24 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Shop" type="Area2D" parent="UI/Margin"]
+[node name="Play" type="AnimatedSprite" parent="UI/Margin"]
+visible = false
+frames = SubResource( 3 )
+animation = "pause"
+
+[node name="bgMusic" type="AudioStreamPlayer" parent="UI/Margin/Play"]
+
+[node name="ClosableIcons" type="Node2D" parent="UI/Margin"]
+script = ExtResource( 17 )
+
+[node name="Shop" type="Area2D" parent="UI/Margin/ClosableIcons"]
 position = Vector2( 15, 0 )
 script = ExtResource( 5 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Margin/Shop"]
-shape = SubResource( 3 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Margin/ClosableIcons/Shop"]
+shape = SubResource( 4 )
 
-[node name="Panel" parent="UI/Margin/Shop" instance=ExtResource( 14 )]
+[node name="Panel" parent="UI/Margin/ClosableIcons/Shop" instance=ExtResource( 14 )]
 visible = false
 anchor_left = 0.0
 anchor_top = 0.0
@@ -123,46 +134,43 @@ margin_top = 3.46478
 margin_right = 91.9514
 margin_bottom = 166.465
 
-[node name="shopSound" type="AudioStreamPlayer" parent="UI/Margin/Shop"]
+[node name="shopSound" type="AudioStreamPlayer" parent="UI/Margin/ClosableIcons/Shop"]
 stream = ExtResource( 15 )
 
-[node name="Icon" type="AnimatedSprite" parent="UI/Margin/Shop"]
-frames = SubResource( 4 )
+[node name="Icon" type="AnimatedSprite" parent="UI/Margin/ClosableIcons/Shop"]
+frames = SubResource( 5 )
 
-[node name="Bank" type="Node2D" parent="UI/Margin/Shop/Icon"]
+[node name="Bank" type="Node2D" parent="UI/Margin/ClosableIcons/Shop/Icon"]
 script = ExtResource( 10 )
 
-[node name="Settings" parent="UI/Margin" instance=ExtResource( 9 )]
+[node name="Settings" parent="UI/Margin/ClosableIcons" instance=ExtResource( 9 )]
 sound_file = "res://assets/audio/Chonk2.wav"
 
-[node name="Icon" parent="UI/Margin/Settings" index="0"]
+[node name="Icon" parent="UI/Margin/ClosableIcons/Settings" index="0"]
 texture = ExtResource( 16 )
 
-[node name="Play" type="AnimatedSprite" parent="UI/Margin"]
-visible = false
-frames = SubResource( 5 )
-animation = "pause"
-
-[node name="bgMusic" type="AudioStreamPlayer" parent="UI/Margin/Play"]
-
-[node name="Bag" parent="UI/Margin" instance=ExtResource( 9 )]
+[node name="Bag" parent="UI/Margin/ClosableIcons" instance=ExtResource( 9 )]
 position = Vector2( 29.85, 0.23597 )
 icon_type = "bag"
 make_visible_on_click = NodePath("InBag")
 
-[node name="Icon" parent="UI/Margin/Bag" index="0"]
+[node name="Icon" parent="UI/Margin/ClosableIcons/Bag" index="0"]
 texture = ExtResource( 13 )
 
-[node name="InBag" parent="UI/Margin/Bag" instance=ExtResource( 6 )]
+[node name="InBag" parent="UI/Margin/ClosableIcons/Bag" instance=ExtResource( 6 )]
 visible = false
+margin_left = -48.81
+margin_top = 10.0113
+margin_right = 90.19
+margin_bottom = 84.0113
 
 [node name="Node" type="Node" parent="."]
 
-[connection signal="mouse_entered" from="UI/Margin/Shop" to="UI/Margin/Shop" method="_on_icon_mouse_entered"]
-[connection signal="mouse_exited" from="UI/Margin/Shop" to="UI/Margin/Shop" method="_on_icon_mouse_exited"]
-[connection signal="icon_pressed" from="UI/Margin/Bag" to="UI/Margin/Bag/InBag" method="_on_Bag_icon_pressed"]
-[connection signal="equip" from="UI/Margin/Bag/InBag" to="Cat" method="_on_equip"]
-[connection signal="unequip" from="UI/Margin/Bag/InBag" to="Cat" method="_on_unequip"]
+[connection signal="mouse_entered" from="UI/Margin/ClosableIcons/Shop" to="UI/Margin/ClosableIcons/Shop" method="_on_icon_mouse_entered"]
+[connection signal="mouse_exited" from="UI/Margin/ClosableIcons/Shop" to="UI/Margin/ClosableIcons/Shop" method="_on_icon_mouse_exited"]
+[connection signal="icon_pressed" from="UI/Margin/ClosableIcons/Bag" to="UI/Margin/ClosableIcons/Bag/InBag" method="_on_Bag_icon_pressed"]
+[connection signal="equip" from="UI/Margin/ClosableIcons/Bag/InBag" to="Cat" method="_on_equip"]
+[connection signal="unequip" from="UI/Margin/ClosableIcons/Bag/InBag" to="Cat" method="_on_unequip"]
 
-[editable path="UI/Margin/Settings"]
-[editable path="UI/Margin/Bag"]
+[editable path="UI/Margin/ClosableIcons/Settings"]
+[editable path="UI/Margin/ClosableIcons/Bag"]

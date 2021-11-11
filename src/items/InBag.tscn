@@ -5,10 +5,11 @@
 [ext_resource path="res://src/ui/SmolOrange.tres" type="Theme" id=3]
 
 [node name="InBag" type="NinePatchRect"]
-margin_left = -50.1873
-margin_top = 2.79578
-margin_right = 88.8127
-margin_bottom = 76.7958
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -69.5
+margin_right = 69.5
+margin_bottom = 74.0
 texture = ExtResource( 1 )
 patch_margin_left = 15
 patch_margin_top = 12

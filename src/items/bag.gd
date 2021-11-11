@@ -52,14 +52,16 @@ func _on_Bag_icon_pressed(type):
 func _on_UseButton_pressed():
 	if selected_item.type == "consumable":
 		Globals.inventory[selected_item.id] -= 1
+		update_bag()
 	# If hat, body, or mouth, send signal to cat to equip appropirate attire
 	else:
 		if button_use.text == "Equip":
+			button_use.text = "Unequip"
 			emit_signal("equip", selected_item.id, selected_item.type)
 			# Swap with currently equipped item and add back to inventory
 			var old_equipped_id = Globals.equipped[selected_item.type]
 			Globals.equipped[selected_item.type] = selected_item.id
 		elif button_use.text == "Unequip":
+			button_use.text = "Equip"
 			emit_signal("unequip", selected_item.type)
 			Globals.equipped[selected_item.type] = ""
-	update_bag()

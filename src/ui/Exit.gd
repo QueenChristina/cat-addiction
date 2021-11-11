@@ -8,6 +8,7 @@ More flexible than button -- allows extension to make icon animated.
 """
 
 signal icon_pressed(type)
+signal opened()
 
 export var icon_type = "exit"
 export(String, FILE) var sound_file
@@ -29,7 +30,14 @@ func _input(event):
 		if make_visible_on_click != null:
 			var node = get_node(make_visible_on_click)
 			node.visible = !node.visible
+			if node.visible:
+				emit_signal("opened")
 		emit_signal("icon_pressed", icon_type)
+
+func close():
+	if make_visible_on_click != null:
+		var node = get_node(make_visible_on_click)
+		node.visible = false
 
 func _on_icon_mouse_entered():
 	icon.scale = Vector2(1.4, 1.4)
