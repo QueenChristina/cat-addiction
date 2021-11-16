@@ -15,6 +15,7 @@ var shopClose = preload("res://assets/audio/closeShopBell.wav")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	manage_shop()
+	Globals.connect("randomize_shop", self, "manage_shop")
 
 func _input(event):
 	if event is InputEventMouse and event.is_action_pressed("click") and in_icon:

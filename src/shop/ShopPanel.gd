@@ -1,5 +1,7 @@
 extends NinePatchRect
 
+# TODO: add upgrade items, special consumables, etc.
+
 onready var items_grid = $GridContainer
 onready var name_tag = $NameTag
 onready var description = $Description

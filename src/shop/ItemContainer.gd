@@ -2,6 +2,7 @@ extends Button
 
 # TODO: item description based on hover and global position.
 # (usable both in shop and inventory)
+# HOWEVER - note that hover doesn't work well on mobile -- alternatives?
 
 signal item_selected(item_id)
 

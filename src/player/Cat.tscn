@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=20 format=2]
 
 [ext_resource path="res://assets/player/cat.png" type="Texture" id=1]
 [ext_resource path="res://src/items/MouthDecor.tscn" type="PackedScene" id=2]
@@ -8,31 +8,31 @@
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
-region = Rect2( 104, 0, 52, 42 )
+region = Rect2( 0, 0, 52, 42 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
-region = Rect2( 312, 0, 52, 42 )
+region = Rect2( 52, 0, 52, 42 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 1 )
-region = Rect2( 364, 0, 52, 42 )
+region = Rect2( 312, 0, 52, 42 )
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 1 )
-region = Rect2( 416, 0, 52, 42 )
+region = Rect2( 364, 0, 52, 42 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 1 )
-region = Rect2( 468, 0, 52, 42 )
+region = Rect2( 416, 0, 52, 42 )
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 52, 42 )
+region = Rect2( 468, 0, 52, 42 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 1 )
-region = Rect2( 52, 0, 52, 42 )
+region = Rect2( 104, 0, 52, 42 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 1 )
@@ -52,20 +52,20 @@ region = Rect2( 260, 0, 52, 42 )
 
 [sub_resource type="SpriteFrames" id=12]
 animations = [ {
-"frames": [ SubResource( 1 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
 "loop": true,
-"name": "stand",
-"speed": 5.0
+"name": "sleep",
+"speed": 1.5
 }, {
-"frames": [ SubResource( 2 ), SubResource( 3 ), SubResource( 4 ), SubResource( 5 ) ],
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
 "name": "walk",
 "speed": 5.0
 }, {
-"frames": [ SubResource( 6 ), SubResource( 7 ) ],
+"frames": [ SubResource( 7 ) ],
 "loop": true,
-"name": "sleep",
-"speed": 1.5
+"name": "stand",
+"speed": 5.0
 }, {
 "frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
 "loop": true,
@@ -73,7 +73,15 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=13]
+[sub_resource type="SpriteFrames" id=13]
+animations = [ {
+"frames": [  ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=14]
 extents = Vector2( 17.1908, 16.0608 )
 
 [node name="Cat" type="Area2D"]
@@ -98,9 +106,12 @@ frame = 0
 position = Vector2( 12.5839, -14.0317 )
 animation = "default"
 
+[node name="BodyDecor" type="AnimatedSprite" parent="Base/ShakeBase"]
+frames = SubResource( 13 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 2, 3 )
-shape = SubResource( 13 )
+shape = SubResource( 14 )
 
 [node name="Mew" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 5 )

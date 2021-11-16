@@ -4,15 +4,17 @@ signal equip(item_id, item_type)
 signal unequip(item_type)
 
 var selected_item
+var in_clickable_area = false
 
 onready var items_grid = $ScrollContainer/GridContainer
 onready var item_display = preload("res://src/shop/ItemContainer.tscn")
 onready var button_use = $UseButton
+onready var description = $Description
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	update_bag()
-
+		
 # Update bag contents to match inventory
 func update_bag():
 	# Clear bag of old items
@@ -27,6 +29,7 @@ func update_bag():
 			item.init(id)
 			item.connect("item_selected", self, "_on_item_selected", [item])
 	button_use.disabled = true
+	description.bbcode_text = ""
 		
 func _on_item_selected(item_id, item):
 	# Unselect all items except selected
@@ -44,6 +47,10 @@ func _on_item_selected(item_id, item):
 			button_use.text = "Unequip"
 		else:
 			button_use.text = "Equip"
+	# Item description
+	description.hide()
+	description.bbcode_text = "[center]" + Globals.items[item_id]["description"] + "[/center]"
+	description.show()
 
 func _on_Bag_icon_pressed(type):
 	if self.visible:
@@ -65,3 +72,7 @@ func _on_UseButton_pressed():
 			button_use.text = "Equip"
 			emit_signal("unequip", selected_item.type)
 			Globals.equipped[selected_item.type] = ""
+
+# Hacky workaround with UIs to hide when click off of bag
+func _on_HideButton_pressed():
+	self.hide()

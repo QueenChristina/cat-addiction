@@ -14,7 +14,6 @@ var chonk = load("res://assets/audio/Chonk.wav")
 
 enum States {IDLE, SHAKING, MEOWING}
 var state = States.IDLE
-var default_hat_decor_pos
 
 # Shake variables.
 export(float) var amplitude = 1.0
@@ -25,14 +24,13 @@ onready var timer = $ShakeTimer
 onready var all_sprite = $Base/ShakeBase # Change position of sprite for shaking (default to 0)
 onready var hat_decor = $Base/ShakeBase/HatDecor # For shaking separately, (Default to one position)
 onready var mouth_decor = $Base/ShakeBase/MouthDecor # For shaking separately, (Default to one position)
+onready var body_decor = $Base/ShakeBase/BodyDecor
 onready var sprite = $Base/ShakeBase/Sprite
 onready var sound_meow = $Mew
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	set_process(false)
-	default_hat_decor_pos = hat_decor.position
-	print(default_hat_decor_pos)
 	for i in range(10):
 		audio_players.append(AudioStreamPlayer.new())
 		self.add_child(audio_players[i])
@@ -66,7 +64,8 @@ func _change_state(new_state):
 	match new_state:
 		States.IDLE:
 			all_sprite.position = Vector2(0, 0)
-			hat_decor.position = default_hat_decor_pos
+			hat_decor.offset = Vector2(0, 0)
+			body_decor.offset = Vector2(0, 0)
 			sprite.animation = "stand" # TODO: whatever was previous default animation, eg. walking if animated
 			set_process(false)
 		States.SHAKING:
@@ -81,9 +80,12 @@ func _process(delta):
 	all_sprite.position = Vector2(
 		rand_range(amplitude, -amplitude) * damping,
 		rand_range(amplitude, -amplitude) * damping)
-	hat_decor.position = Vector2(
-		rand_range(amplitude, -amplitude) * damping + default_hat_decor_pos.x,
-		rand_range(amplitude, -amplitude) * damping + default_hat_decor_pos.y)
+	hat_decor.offset = Vector2(
+		rand_range(amplitude, -amplitude) * damping,
+		rand_range(amplitude, -amplitude) * damping)
+	body_decor.offset = Vector2(
+		rand_range(amplitude, -amplitude) * damping,
+		rand_range(amplitude, -amplitude) * damping)
 
 # Shake based on 
 # https://github.com/GDQuest/godot-make-pro-2d-games/blob/master/actors/camera/ShakingCamera.gd

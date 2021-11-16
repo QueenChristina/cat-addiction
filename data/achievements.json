@@ -1,0 +1,37 @@
+{
+    "achievement_id" : {
+        "occur_at_count" : 1,
+        "name": "Name to be displayed on screen",
+        "description" : "Congrats!!! You clicky the cat.",
+        "icon" : "welcome",
+        "confetti" : "normal",
+    },
+    "welcome" : {
+        "occur_at_count" : 1,
+        "name": "Welcome to your new addiction!",
+        "description" : "Congrats!!! You clicky the cat.",
+        "icon" : "welcome",
+        "confetti" : "cats",
+    },
+    "testing" : {
+        "occur_at_count" : 10,
+        "name": "Decimal clickied the cat.",
+        "description" : "Congrats!!! You clicky the cat 10 times.",
+        "icon" : "welcome",
+        "confetti" : "cats_wacky",
+    },
+    "centennial" : {
+        "occur_at_count" : 100,
+        "name": "Centennial clickied the cat.",
+        "description" : "Congrats!!! You clicky the cat 100 times.",
+        "icon" : "welcome",
+        "confetti" : "cats",
+    },
+
+    "420_gang" : {
+        "occur_at" : "weed_costume complete",
+        "name": "Weed done!",
+        "description" : "You completed and wore the weed outfit.",
+        "icon" : "welcome",
+    },
+}

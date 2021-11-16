@@ -2,8 +2,10 @@
     "item_id" : {
         "name": "Name to be displayed on screen",
         "price" : 100,
-        "description" : "Wearable weed of wonder. Say no more."
+        "description" : "Wearable weed of wonder. Say no more.",
+        "price_change" : "optional function to increase price of item, set price by x items sold",
     },
+    
     "weed" : {
         "name": "Weed",
         "price" : 420,
@@ -16,6 +18,7 @@
         "description" : "Brain stuff.",
         "type" : "hat",
     },
+
     "cig" : {
         "name": "Cig",
         "price" : 32,
@@ -28,11 +31,35 @@
         "description" : "A white line. Just a line. Definitely not snortable.",
         "type" : "mouth",
     },
+
     "weed_costume" : {
         "name": "Weed Cape",
         "price" : 420,
         "description" : "Wearable weed draped on your handsome shoulders.",
         "type" : "hat",
         "special_icon" : "NAME of special display icon - for items too big to fit in normal display",
-    }
+    },
+
+    "boost_gems" : {
+        "name": "Gem Boost",
+        "price" : 100,
+        "description" : "Temporarily boost rate of gems.",
+        "price_change" : "10 * x + 100",
+        "duration" : 10,
+        "duration_change" : "something decreasing but not entirely to 0",
+    },
+    "boost_money" : {
+        "name": "Money Boost",
+        "price" : 100,
+        "description" : "Temporarily boost the rate of money.",
+        "price_change" : "10 * x + 100",
+        "duration" : 10,
+    },
+    "boost_count" : {
+        "name": "Score Boost",
+        "price" : 100,
+        "description" : "Temporarily boost clicker ability (click more for one).",
+        "price_change" : "10 * x + 100",
+        "duration" : 10,
+    },
 }
