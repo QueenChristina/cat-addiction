@@ -105,7 +105,6 @@ animation = "weed"
 [node name="MouthDecor" parent="Display" instance=ExtResource( 7 )]
 visible = false
 position = Vector2( 10, 10 )
-frame = 2
 playing = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

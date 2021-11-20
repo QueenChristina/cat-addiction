@@ -369,7 +369,6 @@ position = Vector2( 110.401, 10.0794 )
 make_visible_on_click = NodePath("..")
 
 [node name="AutoClicker" type="AnimatedSprite" parent="."]
-visible = false
 position = Vector2( 91.6147, 156.411 )
 scale = Vector2( 0.25, 0.25 )
 frames = SubResource( 10 )

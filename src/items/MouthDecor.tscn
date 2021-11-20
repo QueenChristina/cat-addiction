@@ -34,5 +34,4 @@ animations = [ {
 [node name="MouthDecor" type="AnimatedSprite"]
 frames = SubResource( 5 )
 animation = "cig"
-frame = 1
 playing = true
