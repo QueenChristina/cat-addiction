@@ -69,10 +69,10 @@ func _on_BuyButton_pressed():
 	if Globals.buyable_items[selected_item.id] <= 0:
 		Globals.buyable_items.erase(selected_item.id)
 	# Change shop text
-	selected_item.state = "bought"
-	name_tag.bbcode_text = ""
-	description.bbcode_text = "Thank you for your mooolah!!!"
-	buy_button.disabled = true
+		selected_item.state = "oos"
+		name_tag.bbcode_text = ""
+		description.bbcode_text = "Thank you for your mooolah!!!"
+		buy_button.disabled = true
 
 
 func _on_Exit_icon_pressed(type):

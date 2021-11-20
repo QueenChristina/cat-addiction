@@ -29,13 +29,16 @@ func init(item_id):
 	# Set item description and info based on item_id
 	id = item_id
 	var item_info = Globals.items[id]
+	
 	display_name = item_info["name"]
 	price = item_info["price"]
 	description = item_info["description"]
-	type = item_info["type"]
+	type = item_info.get("type","")
 	if item_info.has("special_icon"):
 		# TODO: for items with special icons just for display
 		item_icon = items.get_node("Item")
+		if id=="clicker":
+			item_icon.texture=load("res://assets/shop_items/clicker.png")
 	else:
 		if type == "hat":
 			item_icon = items.get_node("HatDecor")
@@ -44,7 +47,7 @@ func init(item_id):
 		else:
 			print("WARNING: unknown item type.")
 			item_icon = items.get_node("Item")
-	item_icon.animation = id # assumes: animation name MUST match item id
+		item_icon.animation = id # assumes: animation name MUST match item id
 
 	for item in items.get_children():
 		item.hide()
@@ -55,7 +58,7 @@ func _on_ItemContainer_pressed():
 	select_sound.play(0)
 
 func set_state(new_state):
-	assert(new_state == "unselected" or new_state == "selected" or new_state == "bought")
+	assert(new_state == "unselected" or new_state == "selected" or new_state == "oos")
 	state = new_state
 	if state == "selected":
 		select_animation.play("selected")

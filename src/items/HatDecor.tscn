@@ -3,14 +3,6 @@
 [ext_resource path="res://working_files/imgs/redHerring.png" type="Texture" id=1]
 [ext_resource path="res://assets/items/hat/hats_sheet_1.png" type="Texture" id=2]
 
-[sub_resource type="AtlasTexture" id=5]
-atlas = ExtResource( 2 )
-region = Rect2( 120, 0, 40, 40 )
-
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 2 )
-region = Rect2( 200, 0, 40, 40 )
-
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 2 )
 region = Rect2( 280, 0, 40, 40 )
@@ -35,17 +27,20 @@ region = Rect2( 240, 0, 40, 40 )
 atlas = ExtResource( 2 )
 region = Rect2( 280, 0, 40, 40 )
 
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 2 )
+region = Rect2( 120, 0, 40, 40 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 2 )
+region = Rect2( 200, 0, 40, 40 )
+
 [sub_resource type="SpriteFrames" id=12]
 animations = [ {
 "frames": [  ],
 "loop": true,
 "name": "default",
 "speed": 5.0
-}, {
-"frames": [ SubResource( 5 ), SubResource( 6 ) ],
-"loop": true,
-"name": "bunny",
-"speed": 1.0
 }, {
 "frames": [ SubResource( 8 ) ],
 "loop": true,
@@ -81,6 +76,11 @@ animations = [ {
 "loop": true,
 "name": "propeller",
 "speed": 5.0
+}, {
+"frames": [ SubResource( 5 ), SubResource( 6 ) ],
+"loop": true,
+"name": "bunny",
+"speed": 1.0
 } ]
 
 [node name="HatDecor" type="AnimatedSprite"]

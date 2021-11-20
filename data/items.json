@@ -86,6 +86,12 @@
         "type" : "hat",
         "special_icon" : "NAME of special display icon - for items too big to fit in normal display",
     },
+    "clicker" : {
+        "name": "Auto Clicker",
+        "price" : 25,
+        "description" : "Lore",
+        "special_icon" : "clicker",
+    },
 
     "boost_gems" : {
         "name": "Gem Boost",

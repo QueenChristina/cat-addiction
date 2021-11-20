@@ -6,10 +6,10 @@ signal achievement_reached(id)
 var bank = 100 # amount of money
 var score = 0 setget set_score
 export var chance_get_money = 0.1 # TODO: increase with upgrades, change money spawns when click cat
-var inventory = {"pill" : 1, "weed" : 1, "cig" : 1} # Format of item_id : amount
+var inventory = {"clicker" : 0,"pill" : 1, "weed" : 1, "cig" : 1} # Format of item_id : amount
 var equipped = {"hat" : "", "mouth" : "", "body" : ""} # Equipped items of format type : item_id
 var items = {}
-var buyable_items = {"pill" : 1, "weed" : 1, "cig" : 1,
+var buyable_items = {"clicker" : 1000, "pill" : 1, "weed" : 1, "cig" : 1,
 					"bunny" : 1, "birb" : 1, "redHerring" : 1,
 					"propeller" : 1, "hairyPawter" : 1,
 					"poop" : 1} # List of buyable items by
@@ -44,6 +44,9 @@ func set_score(val):
 		emit_signal("achievement_reached", score_to_achievement[str(val)])
 	
 func add_to_inventory(item_id):
+	if(item_id=="clicker"):
+		
+		get_node("../World/AutoClickers").add_clicker()
 	if !Globals.inventory.has(item_id):
 		Globals.inventory[item_id] = 1
 	else:
