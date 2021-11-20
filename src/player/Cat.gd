@@ -38,20 +38,23 @@ func _ready():
 func _input(event):
 #	if Input.is_action_pressed("click"):
 	if event is InputEventMouse and event.is_action_pressed("click") and in_cat:
-		Globals.score += 1
-		set_shake(true)
-		_on_play_sound("chonk", rand_range(0.95, 1.05))
-		if rand_range(0, 1) < chance_meow and state != States.MEOWING:
-			_change_state(States.MEOWING)
-		# Spawn love and money
-		var new_spark = love.instance()
+		
 		event = make_input_local(event)
-		new_spark.position = event.position
-		self.add_child(new_spark)
-		if rand_range(0, 1) < Globals.chance_get_money:
-			var new_money = money.instance()
-			new_money.connect("play_sound", self, "_on_play_sound")
-			self.add_child(new_money)
+		self.clicky(event.position)
+func clicky(event_pos):
+	Globals.score += 1
+	set_shake(true)
+	_on_play_sound("chonk", rand_range(0.95, 1.05))
+	if rand_range(0, 1) < chance_meow and state != States.MEOWING:
+		_change_state(States.MEOWING)
+	# Spawn love and money
+	var new_spark = love.instance()
+	new_spark.position = event_pos
+	self.add_child(new_spark)
+	if rand_range(0, 1) < Globals.chance_get_money:
+		var new_money = money.instance()
+		new_money.connect("play_sound", self, "_on_play_sound")
+		self.add_child(new_money)
 
 func set_shake(value = true):
 	shake = value
