@@ -3,13 +3,16 @@ extends Node2D
 signal randomize_shop
 signal achievement_reached(id)
 
-var bank = 0 # amount of money
+var bank = 100 # amount of money
 var score = 0 setget set_score
 export var chance_get_money = 0.1 # TODO: increase with upgrades, change money spawns when click cat
 var inventory = {"pill" : 1, "weed" : 1, "cig" : 1} # Format of item_id : amount
 var equipped = {"hat" : "", "mouth" : "", "body" : ""} # Equipped items of format type : item_id
 var items = {}
-var buyable_items = {"pill" : 1, "weed" : 1, "cig" : 1} # List of buyable items by
+var buyable_items = {"pill" : 1, "weed" : 1, "cig" : 1,
+					"bunny" : 1, "birb" : 1, "redHerring" : 1,
+					"propeller" : 1, "hairyPawter" : 1,
+					"poop" : 1} # List of buyable items by
 # item_id : amount -- to be added to manually as you make more items and story
 # progresses and/or player gets richer
 var achievements = {}

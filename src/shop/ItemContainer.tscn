@@ -99,7 +99,7 @@ centered = false
 
 [node name="HatDecor" parent="Display" instance=ExtResource( 6 )]
 visible = false
-position = Vector2( 10, 10 )
+position = Vector2( 12, 15 )
 animation = "weed"
 
 [node name="MouthDecor" parent="Display" instance=ExtResource( 7 )]

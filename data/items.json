@@ -5,7 +5,54 @@
         "description" : "Wearable weed of wonder. Say no more.",
         "price_change" : "optional function to increase price of item, set price by x items sold",
     },
+
+    "" : {
+        "name": "",
+        "price" : 0,
+        "description" : "",
+        "type" : "hat",
+    },
     
+    "hairyPawter" : {
+        "name": "Hairy Pawter",
+        "price" : 90,
+        "description" : "Be the magical guy you know you are!",
+        "type" : "hat",
+    },
+
+    "poop" : {
+        "name": "Not Poop",
+        "price" : 0,
+        "description" : "Not mine...",
+        "type" : "hat",
+    },
+
+    "bunny" : {
+        "name": "Bunny Hat",
+        "price" : 10,
+        "description" : "Boinny",
+        "type" : "hat",
+    },
+
+    "birb" : {
+        "name": "Birb",
+        "price" : 10,
+        "description" : "Plastic decoration for the garden. I, um, what are you...?",
+        "type" : "hat",
+    },
+    "redHerring" : {
+        "name": "Red Herring",
+        "price" : 10,
+        "description" : "Nothing suspicious at all...definitely not Swedish...",
+        "type" : "hat",
+    },
+    "propeller" : {
+        "name": "Propeller Hat",
+        "price" : 80,
+        "description" : "Fly!",
+        "type" : "hat",
+    },
+
     "weed" : {
         "name": "Weed",
         "price" : 420,
@@ -62,4 +109,17 @@
         "price_change" : "10 * x + 100",
         "duration" : 10,
     },
+
+    "auto_clicker" : {
+        "name" : "AutoPetter",
+        "price" : 100,
+        "description" : "Automatically pets the cat periodically.",
+        "price_change" : "10 * x + 100",
+    },
+    "auto_clicker_upgrade" : {
+        "name" : "AutoPetter Upgrade",
+        "price" : 200,
+        "description" : "Increase productivity of all AutoPetters -- pet faster!",
+        "price_change" : "10 * x + 200",
+    }
 }
