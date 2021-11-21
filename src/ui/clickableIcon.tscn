@@ -1,21 +1,15 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://assets/ui/Exit.png" type="Texture" id=1]
-[ext_resource path="res://src/ui/Exit.gd" type="Script" id=2]
+[ext_resource path="res://src/ui/TopButton.gd" type="Script" id=2]
 [ext_resource path="res://assets/audio/Chonk.wav" type="AudioStream" id=3]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 4.58057, 4.67395 )
-
-[node name="Exit" type="Area2D"]
+[node name="Exit" type="TextureButton"]
+texture_normal = ExtResource( 1 )
 script = ExtResource( 2 )
-sound_file = "res://assets/audio/closeShopBell.wav"
-
-[node name="Icon" type="Sprite" parent="."]
-texture = ExtResource( 1 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="ClickSound" type="AudioStreamPlayer" parent="."]
 

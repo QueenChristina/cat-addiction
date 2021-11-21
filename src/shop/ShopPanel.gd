@@ -6,16 +6,25 @@ onready var items_grid = $GridContainer
 onready var name_tag = $NameTag
 onready var description = $Description
 onready var buy_button = $Buy
+export var max_items_in_shop = 8 # TODO: upgradeable amount
 
 onready var item_display = preload("res://src/shop/ItemContainer.tscn")
 
 var selected_item
+var was_open=false
+
+onready var sound = $shopSound
+
+var shopOpen = preload("res://assets/audio/openShopBell.wav")
+var shopClose = preload("res://assets/audio/closeShopBell.wav")
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	for item in items_grid.get_children():
 		item.connect("item_selected", self, "_on_item_selected", [item])
-		
+	manage_shop()
+	Globals.connect("randomize_shop", self, "manage_shop")
 # TODO: parent should have the logic to control and populate shop panel
 # 	items: Takes in a dictionairy of items by item_id : amount
 # TODO: make amount matter - right now, amount is assumed to be 1
@@ -40,6 +49,16 @@ func open():
 	name_tag.bbcode_text = "Welcome!"
 	description.bbcode_text = "Select an item to view and buy."
 	buy_button.disabled = true
+func _process(delta):
+	if visible and not was_open:
+		was_open=true
+		sound.stream = shopOpen
+		sound.play(0)
+	if not visible and was_open:
+		was_open=false
+		sound.stream = shopClose
+		sound.play(0)
+		
 	
 func _on_item_selected(item_id, item):
 	# Unselect all items except selected
@@ -77,3 +96,25 @@ func _on_BuyButton_pressed():
 
 func _on_Exit_icon_pressed(type):
 	self.visible = false
+
+
+func manage_shop():
+	self.open() # Reformats text and animation to open shop type - NOT visibility
+	self.clear()
+	self.populate(spawn_items(max_items_in_shop))
+	
+# Returns a dictionary of random items of item_id : amount to spawn in shop
+# Use with manage_shop
+# up to num_items to spawn (constrained by number of available items): usually in multiples of x4
+var rng = RandomNumberGenerator.new()
+func spawn_items(num_items):
+	var items = {}
+	var num_to_spawn = num_items if Globals.buyable_items.size() > num_items else Globals.buyable_items.size()
+	var buyable_items = Globals.buyable_items.duplicate()
+	for i in range(num_to_spawn):
+		rng.randomize()
+		var rand_ind = rng.randi_range(0, buyable_items.size() - 1)
+		var item_id = buyable_items.keys()[rand_ind]
+		items[item_id] = buyable_items[item_id]
+		buyable_items.erase(item_id)
+	return items

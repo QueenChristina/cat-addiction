@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://assets/audio/capslok__cash-register-fake.wav" type="AudioStream" id=1]
 [ext_resource path="res://assets/ui/ShopBackground.png" type="Texture" id=2]
 [ext_resource path="res://src/ui/clickableIcon.tscn" type="PackedScene" id=3]
 [ext_resource path="res://src/shop/ItemContainer.tscn" type="PackedScene" id=4]
 [ext_resource path="res://src/ui/SmolOrange.tres" type="Theme" id=5]
+[ext_resource path="res://assets/audio/openShopBell.wav" type="AudioStream" id=6]
 [ext_resource path="res://src/shop/ShopPanel.gd" type="Script" id=7]
 
 [sub_resource type="StyleBoxEmpty" id=1]
@@ -31,7 +32,13 @@ __meta__ = {
 }
 
 [node name="Exit" parent="." instance=ExtResource( 3 )]
-position = Vector2( 100.409, 13.0815 )
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -18.0
+margin_top = 8.5
+margin_right = -9.0
+margin_bottom = 17.5
+make_visible_on_click = NodePath("..")
 
 [node name="GridContainer" type="GridContainer" parent="."]
 margin_left = 10.0
@@ -106,6 +113,9 @@ __meta__ = {
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="Buy"]
 stream = ExtResource( 1 )
+
+[node name="shopSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
 
 [connection signal="icon_pressed" from="Exit" to="." method="_on_Exit_icon_pressed"]
 [connection signal="pressed" from="Buy" to="." method="_on_BuyButton_pressed"]

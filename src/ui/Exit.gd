@@ -27,6 +27,7 @@ func _ready():
 func _input(event):
 	if event is InputEventMouse and event.is_action_pressed("click") and in_icon:
 		sound.play(0)
+		
 		if make_visible_on_click != null:
 			var node = get_node(make_visible_on_click)
 			node.visible = !node.visible

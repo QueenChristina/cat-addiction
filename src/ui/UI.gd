@@ -1,7 +1,7 @@
 extends CanvasLayer
 
-onready var label_score = $Score
-onready var label_money = $Money
+onready var label_score = $Margin/Scores/Score
+onready var label_money = $Margin/Scores/Money
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

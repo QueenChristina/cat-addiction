@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "ClickableIcon",
 "language": "GDScript",
 "path": "res://src/ui/Exit.gd"
+}, {
+"base": "TextureButton",
+"class": "ClickableTopButton",
+"language": "GDScript",
+"path": "res://src/ui/TopButton.gd"
 } ]
 _global_script_class_icons={
-"ClickableIcon": ""
+"ClickableIcon": "",
+"ClickableTopButton": ""
 }
 
 [application]

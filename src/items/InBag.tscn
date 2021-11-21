@@ -1,9 +1,10 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://assets/ui/ShopBackground.png" type="Texture" id=1]
 [ext_resource path="res://src/items/bag.gd" type="Script" id=2]
 [ext_resource path="res://src/ui/SmolOrange.tres" type="Theme" id=3]
 [ext_resource path="res://assets/ui/1980v202003.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://src/ui/clickableIcon.tscn" type="PackedScene" id=5]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.74902, 0.247059, 0.156863, 1 )
@@ -147,10 +148,13 @@ __meta__ = {
 }
 
 [node name="UseButton" type="Button" parent="."]
-margin_left = 23.0
-margin_top = 53.0
-margin_right = 117.0
-margin_bottom = 66.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = -21.0
+margin_right = -8.0
+margin_bottom = -8.0
 theme = ExtResource( 3 )
 text = "Use"
 __meta__ = {
@@ -158,10 +162,13 @@ __meta__ = {
 }
 
 [node name="Description" type="RichTextLabel" parent="."]
-margin_left = 14.6663
-margin_top = 145.88
-margin_right = 123.666
-margin_bottom = 157.88
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 8.0
+margin_top = -37.0
+margin_right = -8.0
+margin_bottom = -25.0
 grow_horizontal = 0
 grow_vertical = 0
 rect_clip_content = false
@@ -195,6 +202,15 @@ custom_styles/hover = SubResource( 16 )
 custom_styles/pressed = SubResource( 13 )
 custom_styles/focus = SubResource( 14 )
 custom_styles/normal = SubResource( 15 )
+
+[node name="Exit" parent="." instance=ExtResource( 5 )]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -18.0
+margin_top = 8.5
+margin_right = -9.0
+margin_bottom = 17.5
+make_visible_on_click = NodePath("..")
 
 [connection signal="pressed" from="UseButton" to="." method="_on_UseButton_pressed"]
 [connection signal="pressed" from="HideButton" to="." method="_on_HideButton_pressed"]

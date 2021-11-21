@@ -6,7 +6,9 @@ var in_icon = false
 export var max_items_in_shop = 8 # TODO: upgradeable amount
 
 onready var icon = $Icon
-onready var shop_panel = $Panel
+export(NodePath) var shop_panel_node_path = null
+
+onready var shop_panel = get_node(shop_panel_node_path)
 onready var sound = $shopSound
 
 var shopOpen = preload("res://assets/audio/openShopBell.wav")
@@ -14,7 +16,6 @@ var shopClose = preload("res://assets/audio/closeShopBell.wav")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	manage_shop()
 	Globals.connect("randomize_shop", self, "manage_shop")
 
 func _input(event):

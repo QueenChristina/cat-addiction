@@ -1,22 +1,18 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://assets/ui/Play.png" type="Texture" id=1]
 [ext_resource path="res://assets/ui/Pause.png" type="Texture" id=2]
 [ext_resource path="res://assets/ui/ShopIcon.png" type="Texture" id=3]
 [ext_resource path="res://src/bg/Background.tscn" type="PackedScene" id=4]
-[ext_resource path="res://src/ui/Shop.gd" type="Script" id=5]
 [ext_resource path="res://src/items/InBag.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/player/Cat.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/ui/1980v202002.ttf" type="DynamicFontData" id=8]
 [ext_resource path="res://src/ui/clickableIcon.tscn" type="PackedScene" id=9]
-[ext_resource path="res://src/player/Globals.gd" type="Script" id=10]
 [ext_resource path="res://src/ui/SmolOrange.tres" type="Theme" id=11]
 [ext_resource path="res://src/ui/UI.gd" type="Script" id=12]
 [ext_resource path="res://assets/ui/bag.png" type="Texture" id=13]
 [ext_resource path="res://src/shop/Shop_Panel.tscn" type="PackedScene" id=14]
-[ext_resource path="res://assets/audio/openShopBell.wav" type="AudioStream" id=15]
 [ext_resource path="res://assets/ui/gear.png" type="Texture" id=16]
-[ext_resource path="res://src/UIIcons.gd" type="Script" id=17]
 [ext_resource path="res://assets/ui/achievenment.png" type="Texture" id=18]
 [ext_resource path="res://src/ui/AchievementsController.gd" type="Script" id=19]
 [ext_resource path="res://assets/player/cat.png" type="Texture" id=20]
@@ -25,14 +21,8 @@
 [ext_resource path="res://src/ui/Confetti.gd" type="Script" id=23]
 [ext_resource path="res://assets/audio/jbeetle_3-men-cheering.wav" type="AudioStream" id=24]
 [ext_resource path="res://src/scenes/AutoClickers.gd" type="Script" id=25]
-
-[sub_resource type="DynamicFont" id=1]
-outline_size = 1
-outline_color = Color( 0.890196, 0.231373, 0.00784314, 1 )
-font_data = ExtResource( 8 )
-
-[sub_resource type="Theme" id=2]
-default_font = SubResource( 1 )
+[ext_resource path="res://src/ui/TopButton.gd" type="Script" id=26]
+[ext_resource path="res://assets/audio/Chonk.wav" type="AudioStream" id=27]
 
 [sub_resource type="SpriteFrames" id=3]
 animations = [ {
@@ -47,21 +37,18 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 6, 5 )
+[sub_resource type="DynamicFont" id=1]
+outline_size = 1
+outline_color = Color( 0.890196, 0.231373, 0.00784314, 1 )
+font_data = ExtResource( 8 )
 
-[sub_resource type="SpriteFrames" id=5]
-animations = [ {
-"frames": [ ExtResource( 3 ) ],
-"loop": true,
-"name": "default",
-"speed": 5.0
-} ]
+[sub_resource type="Theme" id=2]
+default_font = SubResource( 1 )
 
 [sub_resource type="StyleBoxFlat" id=6]
 bg_color = Color( 0.890196, 0.231373, 0.00784314, 1 )
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=10]
 resource_name = "notif"
 length = 2.5
 tracks/0/type = "value"
@@ -109,47 +96,14 @@ script = ExtResource( 25 )
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource( 12 )
 
-[node name="Score" type="Label" parent="UI"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -50.0
-margin_top = 3.0
-margin_right = -5.0
-margin_bottom = 16.0
-grow_horizontal = 0
-grow_vertical = 2
-theme = SubResource( 2 )
-custom_colors/font_color = Color( 0.992157, 0.819608, 0.301961, 1 )
-text = "100239"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Money" type="Label" parent="UI"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -40.2092
-margin_top = 12.8418
-margin_right = -5.20923
-margin_bottom = 25.8418
-theme = ExtResource( 11 )
-custom_colors/font_color = Color( 0.890196, 0.231373, 0.00784314, 1 )
-text = "$13394"
-align = 2
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="Margin" type="MarginContainer" parent="UI"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_left = 10.1403
-margin_top = 10.1403
-margin_right = -9.8597
-margin_bottom = -9.85968
 mouse_filter = 2
-custom_constants/margin_right = 15
+custom_constants/margin_right = 4
+custom_constants/margin_top = 4
+custom_constants/margin_left = 4
+custom_constants/margin_bottom = 4
 __meta__ = {
 "_edit_group_": true,
 "_edit_use_anchors_": false
@@ -162,71 +116,135 @@ animation = "pause"
 
 [node name="bgMusic" type="AudioStreamPlayer" parent="UI/Margin/Play"]
 
-[node name="ClosableIcons" type="Node2D" parent="UI/Margin"]
-script = ExtResource( 17 )
+[node name="Scores" type="VBoxContainer" parent="UI/Margin"]
+margin_left = 94.0
+margin_top = 4.0
+margin_right = 116.0
+margin_bottom = 26.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+custom_constants/separation = -2
 
-[node name="Shop" type="Area2D" parent="UI/Margin/ClosableIcons"]
-position = Vector2( 15, 0 )
-script = ExtResource( 5 )
+[node name="Score" type="Label" parent="UI/Margin/Scores"]
+margin_right = 22.0
+margin_bottom = 13.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 11
+theme = SubResource( 2 )
+custom_colors/font_color = Color( 0.992157, 0.819608, 0.301961, 1 )
+text = "100"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="UI/Margin/ClosableIcons/Shop"]
-shape = SubResource( 4 )
+[node name="Money" type="Label" parent="UI/Margin/Scores"]
+margin_top = 11.0
+margin_right = 22.0
+margin_bottom = 22.0
+size_flags_horizontal = 11
+theme = ExtResource( 11 )
+custom_colors/font_color = Color( 0.890196, 0.231373, 0.00784314, 1 )
+text = "$133"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Panel" parent="UI/Margin/ClosableIcons/Shop" instance=ExtResource( 14 )]
+[node name="TopInfo" type="HBoxContainer" parent="UI/Margin"]
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 116.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="SettingsButton" type="TextureButton" parent="UI/Margin/TopInfo"]
+margin_right = 10.0
+margin_bottom = 10.0
+texture_normal = ExtResource( 16 )
+script = ExtResource( 26 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="UI/Margin/TopInfo/SettingsButton"]
+
+[node name="HoverSound" type="AudioStreamPlayer" parent="UI/Margin/TopInfo/SettingsButton"]
+stream = ExtResource( 27 )
+
+[node name="ShopButton" type="TextureButton" parent="UI/Margin/TopInfo"]
+margin_left = 14.0
+margin_right = 26.0
+margin_bottom = 10.0
+texture_normal = ExtResource( 3 )
+script = ExtResource( 26 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+make_visible_on_click = NodePath("../../Shop")
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="UI/Margin/TopInfo/ShopButton"]
+
+[node name="HoverSound" type="AudioStreamPlayer" parent="UI/Margin/TopInfo/ShopButton"]
+stream = ExtResource( 27 )
+
+[node name="BagButton" type="TextureButton" parent="UI/Margin/TopInfo"]
+margin_left = 30.0
+margin_right = 42.0
+margin_bottom = 10.0
+texture_normal = ExtResource( 13 )
+script = ExtResource( 26 )
+make_visible_on_click = NodePath("../../InBag")
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="UI/Margin/TopInfo/BagButton"]
+
+[node name="HoverSound" type="AudioStreamPlayer" parent="UI/Margin/TopInfo/BagButton"]
+stream = ExtResource( 27 )
+
+[node name="AchievementsButton" type="TextureButton" parent="UI/Margin/TopInfo"]
+margin_left = 46.0
+margin_right = 56.0
+margin_bottom = 10.0
+texture_normal = ExtResource( 18 )
+script = ExtResource( 26 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+make_visible_on_click = NodePath("../../AchievementsController/PastAchievements")
+
+[node name="ClickSound" type="AudioStreamPlayer" parent="UI/Margin/TopInfo/AchievementsButton"]
+
+[node name="HoverSound" type="AudioStreamPlayer" parent="UI/Margin/TopInfo/AchievementsButton"]
+stream = ExtResource( 27 )
+
+[node name="InBag" parent="UI/Margin" instance=ExtResource( 6 )]
+visible = false
+anchor_left = 0.0
+anchor_right = 0.0
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 116.0
+margin_bottom = 176.0
+
+[node name="Shop" parent="UI/Margin" instance=ExtResource( 14 )]
 visible = false
 anchor_left = 0.0
 anchor_top = 0.0
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = -22.0486
-margin_top = 3.46478
-margin_right = 91.9514
-margin_bottom = 166.465
+margin_left = 4.0
+margin_top = 4.0
+margin_right = 116.0
+margin_bottom = 176.0
 
-[node name="shopSound" type="AudioStreamPlayer" parent="UI/Margin/ClosableIcons/Shop"]
-stream = ExtResource( 15 )
-
-[node name="Icon" type="AnimatedSprite" parent="UI/Margin/ClosableIcons/Shop"]
-frames = SubResource( 5 )
-
-[node name="Bank" type="Node2D" parent="UI/Margin/ClosableIcons/Shop/Icon"]
-script = ExtResource( 10 )
-
-[node name="Settings" parent="UI/Margin/ClosableIcons" instance=ExtResource( 9 )]
-sound_file = "res://assets/audio/Chonk2.wav"
-
-[node name="Icon" parent="UI/Margin/ClosableIcons/Settings" index="0"]
-texture = ExtResource( 16 )
-
-[node name="Bag" parent="UI/Margin/ClosableIcons" instance=ExtResource( 9 )]
-position = Vector2( 29.85, 0.23597 )
-icon_type = "bag"
-make_visible_on_click = NodePath("InBag")
-
-[node name="Icon" parent="UI/Margin/ClosableIcons/Bag" index="0"]
-texture = ExtResource( 13 )
-
-[node name="InBag" parent="UI/Margin/ClosableIcons/Bag" instance=ExtResource( 6 )]
-visible = false
-margin_left = -48.81
-margin_top = 10.0113
-margin_right = 90.19
-margin_bottom = 84.0113
-
-[node name="Achievements" parent="UI/Margin/ClosableIcons" instance=ExtResource( 9 )]
-make_visible_on_click = NodePath("AchievementsController/PastAchievements")
-
-[node name="Icon" parent="UI/Margin/ClosableIcons/Achievements" index="0"]
-position = Vector2( 43.5315, 0.367908 )
-texture = ExtResource( 18 )
-
-[node name="CollisionShape2D" parent="UI/Margin/ClosableIcons/Achievements" index="1"]
-position = Vector2( 43.6657, 0.360973 )
-
-[node name="AchievementsController" type="Node2D" parent="UI/Margin/ClosableIcons/Achievements"]
+[node name="AchievementsController" type="Node2D" parent="UI/Margin"]
+position = Vector2( 10, 10 )
 script = ExtResource( 19 )
 
-[node name="Notification" type="PanelContainer" parent="UI/Margin/ClosableIcons/Achievements/AchievementsController"]
+[node name="Notification" type="PanelContainer" parent="UI/Margin/AchievementsController"]
 margin_left = -10.0
 margin_top = -45.0
 margin_right = 110.0
@@ -238,7 +256,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MarginContainer" type="MarginContainer" parent="UI/Margin/ClosableIcons/Achievements/AchievementsController/Notification"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/Margin/AchievementsController/Notification"]
 margin_right = 120.0
 margin_bottom = 35.0
 custom_constants/margin_right = 5
@@ -249,7 +267,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Name" type="RichTextLabel" parent="UI/Margin/ClosableIcons/Achievements/AchievementsController/Notification/MarginContainer"]
+[node name="Name" type="RichTextLabel" parent="UI/Margin/AchievementsController/Notification/MarginContainer"]
 margin_left = 5.0
 margin_top = 5.0
 margin_right = 115.0
@@ -258,14 +276,14 @@ bbcode_text = "Congrats! You got an achievement."
 text = "Congrats! You got an achievement."
 scroll_active = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Margin/ClosableIcons/Achievements/AchievementsController/Notification"]
-anims/notif = SubResource( 7 )
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Margin/AchievementsController/Notification"]
+anims/notif = SubResource( 10 )
 
-[node name="Confetti" type="Node2D" parent="UI/Margin/ClosableIcons/Achievements/AchievementsController"]
+[node name="Confetti" type="Node2D" parent="UI/Margin/AchievementsController"]
 position = Vector2( 0, -15 )
 script = ExtResource( 23 )
 
-[node name="Normal" type="Particles2D" parent="UI/Margin/ClosableIcons/Achievements/AchievementsController/Confetti"]
+[node name="Normal" type="Particles2D" parent="UI/Margin/AchievementsController/Confetti"]
 visible = false
 position = Vector2( 50, -10 )
 emitting = false
@@ -275,7 +293,7 @@ one_shot = true
 randomness = 0.1
 process_material = SubResource( 8 )
 
-[node name="CatsSpiral" type="CPUParticles2D" parent="UI/Margin/ClosableIcons/Achievements/AchievementsController/Confetti"]
+[node name="CatsSpiral" type="CPUParticles2D" parent="UI/Margin/AchievementsController/Confetti"]
 visible = false
 position = Vector2( 50, -10 )
 emitting = false
@@ -286,7 +304,7 @@ randomness = 0.1
 texture = ExtResource( 20 )
 angular_velocity = 178.14
 
-[node name="Cats" type="CPUParticles2D" parent="UI/Margin/ClosableIcons/Achievements/AchievementsController/Confetti"]
+[node name="Cats" type="CPUParticles2D" parent="UI/Margin/AchievementsController/Confetti"]
 visible = false
 position = Vector2( 50, -10 )
 emitting = false
@@ -300,7 +318,7 @@ emission_rect_extents = Vector2( 80, 1 )
 angular_velocity = 178.14
 scale_amount = 0.5
 
-[node name="CatsWacky" type="CPUParticles2D" parent="UI/Margin/ClosableIcons/Achievements/AchievementsController/Confetti"]
+[node name="CatsWacky" type="CPUParticles2D" parent="UI/Margin/AchievementsController/Confetti"]
 visible = false
 position = Vector2( 50, -10 )
 emitting = false
@@ -322,10 +340,10 @@ color = Color( 0.921569, 0.921569, 0.921569, 1 )
 hue_variation = 0.37
 hue_variation_random = 0.63
 
-[node name="Cheers" type="AudioStreamPlayer" parent="UI/Margin/ClosableIcons/Achievements/AchievementsController"]
+[node name="Cheers" type="AudioStreamPlayer" parent="UI/Margin/AchievementsController"]
 stream = ExtResource( 24 )
 
-[node name="PastAchievements" type="Panel" parent="UI/Margin/ClosableIcons/Achievements/AchievementsController"]
+[node name="PastAchievements" type="Panel" parent="UI/Margin/AchievementsController"]
 visible = false
 margin_left = -10.0
 margin_top = -10.0
@@ -338,7 +356,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="ScrollContainer" type="ScrollContainer" parent="UI/Margin/ClosableIcons/Achievements/AchievementsController/PastAchievements"]
+[node name="ScrollContainer" type="ScrollContainer" parent="UI/Margin/AchievementsController/PastAchievements"]
 margin_left = 6.0
 margin_top = 23.0
 margin_right = 113.0
@@ -347,22 +365,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/Margin/ClosableIcons/Achievements/AchievementsController/PastAchievements/ScrollContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Margin/AchievementsController/PastAchievements/ScrollContainer"]
 margin_right = 107.0
 margin_bottom = 149.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Exit" parent="UI/Margin/ClosableIcons/Achievements/AchievementsController/PastAchievements" instance=ExtResource( 9 )]
-position = Vector2( 110.401, 10.0794 )
+[node name="Exit" parent="UI/Margin/AchievementsController/PastAchievements" instance=ExtResource( 9 )]
 make_visible_on_click = NodePath("..")
 
-[connection signal="mouse_entered" from="UI/Margin/ClosableIcons/Shop" to="UI/Margin/ClosableIcons/Shop" method="_on_icon_mouse_entered"]
-[connection signal="mouse_exited" from="UI/Margin/ClosableIcons/Shop" to="UI/Margin/ClosableIcons/Shop" method="_on_icon_mouse_exited"]
-[connection signal="icon_pressed" from="UI/Margin/ClosableIcons/Bag" to="UI/Margin/ClosableIcons/Bag/InBag" method="_on_Bag_icon_pressed"]
-[connection signal="equip" from="UI/Margin/ClosableIcons/Bag/InBag" to="Cat" method="_on_equip"]
-[connection signal="unequip" from="UI/Margin/ClosableIcons/Bag/InBag" to="Cat" method="_on_unequip"]
-
-[editable path="UI/Margin/ClosableIcons/Settings"]
-[editable path="UI/Margin/ClosableIcons/Bag"]
-[editable path="UI/Margin/ClosableIcons/Achievements"]
+[connection signal="equip" from="UI/Margin/InBag" to="Cat" method="_on_equip"]
+[connection signal="unequip" from="UI/Margin/InBag" to="Cat" method="_on_unequip"]
