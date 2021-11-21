@@ -29,6 +29,7 @@ func init(item_id):
 	# Set item description and info based on item_id
 	id = item_id
 	var item_info = Globals.items[id]
+	$Available.text=str(Globals.buyable_items[id])
 	
 	display_name = item_info["name"]
 	price = item_info["price"]
@@ -66,8 +67,9 @@ func set_state(new_state):
 	elif state == "unselected":
 		select_animation.play("not_selected")
 	else:
-		item_icon.hide()
-		id = ""
-		display_name = ""
+		#item_icon.hide()
+		#id = ""
+		#display_name = ""
 		price = -1
 		description = "Sold out." # to display in shop
+	$Available.text=str(Globals.buyable_items.get(id,0))

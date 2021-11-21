@@ -14,6 +14,7 @@ onready var description = $Description
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	update_bag()
+	button_use.connect("pressed",self,"_on_UseButton_pressed")
 		
 # Update bag contents to match inventory
 func update_bag():
@@ -64,10 +65,10 @@ func _on_UseButton_pressed():
 	else:
 		if button_use.text == "Equip":
 			button_use.text = "Unequip"
-			emit_signal("equip", selected_item.id, selected_item.type)
 			# Swap with currently equipped item and add back to inventory
 			var old_equipped_id = Globals.equipped[selected_item.type]
 			Globals.equipped[selected_item.type] = selected_item.id
+			emit_signal("equip", selected_item.id, selected_item.type)
 		elif button_use.text == "Unequip":
 			button_use.text = "Equip"
 			emit_signal("unequip", selected_item.type)

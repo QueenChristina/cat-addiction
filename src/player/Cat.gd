@@ -34,7 +34,6 @@ func _ready():
 	for i in range(10):
 		audio_players.append(AudioStreamPlayer.new())
 		self.add_child(audio_players[i])
-
 func _input(event):
 #	if Input.is_action_pressed("click"):
 	if event is InputEventMouse and event.is_action_pressed("click") and in_cat:

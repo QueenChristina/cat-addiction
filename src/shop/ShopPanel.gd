@@ -6,7 +6,7 @@ onready var items_grid = $GridContainer
 onready var name_tag = $NameTag
 onready var description = $Description
 onready var buy_button = $Buy
-export var max_items_in_shop = 8 # TODO: upgradeable amount
+export var max_items_in_shop = 100 # TODO: upgradeable amount
 
 onready var item_display = preload("res://src/shop/ItemContainer.tscn")
 
