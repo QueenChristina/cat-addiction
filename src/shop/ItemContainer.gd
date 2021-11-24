@@ -29,17 +29,21 @@ func init(item_id):
 	# Set item description and info based on item_id
 	id = item_id
 	var item_info = Globals.items[id]
-	$Available.text=str(Globals.buyable_items[id])
+	set_label_amount(Globals.buyable_items.get(id,0))
 	
 	display_name = item_info["name"]
 	price = item_info["price"]
 	description = item_info["description"]
 	type = item_info.get("type","")
 	if item_info.has("special_icon"):
-		# TODO: for items with special icons just for display
+		# for items with special icons just for display TODO: delete this, instead use Displays
 		item_icon = items.get_node("Item")
 		if id=="clicker":
 			item_icon.texture=load("res://assets/shop_items/clicker.png")
+	elif items.get_node("Displays").frames.has_animation(id):
+		# Use displays for this item different from what is used for cat
+		item_icon = items.get_node("Displays")
+		item_icon.animation = id
 	else:
 		if type == "hat":
 			item_icon = items.get_node("HatDecor")
@@ -72,4 +76,11 @@ func set_state(new_state):
 		#display_name = ""
 		price = -1
 		description = "Sold out." # to display in shop
-	$Available.text=str(Globals.buyable_items.get(id,0))
+	set_label_amount(Globals.buyable_items.get(id,0))
+	
+func set_label_amount(amount):
+	if amount == INF:
+		# Display something if amount is INF TODO: add an infinity sign into the font
+		$Available.text = ""
+	else:
+		$Available.text = str(amount)

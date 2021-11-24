@@ -24,7 +24,7 @@
 [ext_resource path="res://src/ui/TopButton.gd" type="Script" id=26]
 [ext_resource path="res://assets/audio/Chonk.wav" type="AudioStream" id=27]
 
-[sub_resource type="SpriteFrames" id=3]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 1 ) ],
 "loop": true,
@@ -37,18 +37,18 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="DynamicFont" id=1]
+[sub_resource type="DynamicFont" id=2]
 outline_size = 1
 outline_color = Color( 0.890196, 0.231373, 0.00784314, 1 )
 font_data = ExtResource( 8 )
 
-[sub_resource type="Theme" id=2]
-default_font = SubResource( 1 )
+[sub_resource type="Theme" id=3]
+default_font = SubResource( 2 )
 
-[sub_resource type="StyleBoxFlat" id=6]
+[sub_resource type="StyleBoxFlat" id=4]
 bg_color = Color( 0.890196, 0.231373, 0.00784314, 1 )
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=5]
 resource_name = "notif"
 length = 2.5
 tracks/0/type = "value"
@@ -64,7 +64,7 @@ tracks/0/keys = {
 "values": [ Vector2( -10, -45 ), Vector2( -10, -10 ), Vector2( -10, 10 ), Vector2( -10, 5 ), Vector2( -10, 10 ), Vector2( -10, -10 ), Vector2( -10, -45 ) ]
 }
 
-[sub_resource type="ParticlesMaterial" id=8]
+[sub_resource type="ParticlesMaterial" id=6]
 emission_shape = 2
 emission_box_extents = Vector3( 120, 1, 1 )
 flag_disable_z = true
@@ -80,7 +80,7 @@ color = Color( 0.776471, 0.776471, 0.776471, 1 )
 hue_variation = 0.51
 hue_variation_random = 1.0
 
-[sub_resource type="StyleBoxFlat" id=9]
+[sub_resource type="StyleBoxFlat" id=7]
 bg_color = Color( 0, 0, 0, 0.776471 )
 
 [node name="World" type="Node2D"]
@@ -111,7 +111,7 @@ __meta__ = {
 
 [node name="Play" type="AnimatedSprite" parent="UI/Margin"]
 visible = false
-frames = SubResource( 3 )
+frames = SubResource( 1 )
 animation = "pause"
 
 [node name="bgMusic" type="AudioStreamPlayer" parent="UI/Margin/Play"]
@@ -132,7 +132,7 @@ margin_bottom = 13.0
 grow_horizontal = 0
 grow_vertical = 2
 size_flags_horizontal = 11
-theme = SubResource( 2 )
+theme = SubResource( 3 )
 custom_colors/font_color = Color( 0.992157, 0.819608, 0.301961, 1 )
 text = "100"
 align = 2
@@ -250,7 +250,7 @@ margin_top = -45.0
 margin_right = 110.0
 margin_bottom = -10.0
 theme = ExtResource( 11 )
-custom_styles/panel = SubResource( 6 )
+custom_styles/panel = SubResource( 4 )
 script = ExtResource( 21 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -277,7 +277,7 @@ text = "Congrats! You got an achievement."
 scroll_active = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Margin/AchievementsController/Notification"]
-anims/notif = SubResource( 10 )
+anims/notif = SubResource( 5 )
 
 [node name="Confetti" type="Node2D" parent="UI/Margin/AchievementsController"]
 position = Vector2( 0, -15 )
@@ -291,7 +291,7 @@ amount = 40
 lifetime = 2.2
 one_shot = true
 randomness = 0.1
-process_material = SubResource( 8 )
+process_material = SubResource( 6 )
 
 [node name="CatsSpiral" type="CPUParticles2D" parent="UI/Margin/AchievementsController/Confetti"]
 visible = false
@@ -351,7 +351,7 @@ margin_right = 110.0
 margin_bottom = 170.0
 mouse_filter = 2
 theme = ExtResource( 11 )
-custom_styles/panel = SubResource( 9 )
+custom_styles/panel = SubResource( 7 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
