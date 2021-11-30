@@ -13,6 +13,7 @@ export var description = "Wearable weed of wonder. Say no more." # to display in
 export var type = "hat"
 
 var state = "unselected" setget set_state
+var show_inventory_amount = false # True if show inventory amount, false if show buyable items amount
 
 onready var select_animation = $Selected/AnimationPlayer
 onready var select_sound = $AudioStreamPlayer
@@ -25,11 +26,16 @@ func _ready():
 #	init("weed") # testing
 	
 # Call to initialize display to match item
-func init(item_id):
+func init(item_id, is_shown_in_inventory):
 	# Set item description and info based on item_id
 	id = item_id
+	show_inventory_amount = is_shown_in_inventory
 	var item_info = Globals.items[id]
-	set_label_amount(Globals.buyable_items.get(id,0))
+	
+	if show_inventory_amount:
+		set_label_amount(Globals.inventory.get(id, 0))
+	else:
+		set_label_amount(Globals.buyable_items.get(id,0))
 	
 	display_name = item_info["name"]
 	price = item_info["price"]
@@ -76,8 +82,11 @@ func set_state(new_state):
 		#display_name = ""
 		price = -1
 		description = "Sold out." # to display in shop
-	# TODO: depends on if inventory or shop -- use global amount if shop, otherwise use inventory amount.
-	set_label_amount(Globals.buyable_items.get(id,0))
+	# depends on if inventory or shop -- use global amount if shop, otherwise use inventory amount
+	if show_inventory_amount:
+		set_label_amount(Globals.inventory.get(id, 0))
+	else:
+		set_label_amount(Globals.buyable_items.get(id,0))
 	
 func set_label_amount(amount):
 	if amount == INF:

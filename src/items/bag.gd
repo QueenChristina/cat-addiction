@@ -27,7 +27,7 @@ func update_bag():
 			var item = item_display.instance();
 			# TODO: account for amount, eg. if amount == 0, don't populate
 			items_grid.add_child(item)
-			item.init(id)
+			item.init(id, true)
 			item.connect("item_selected", self, "_on_item_selected", [item])
 	button_use.disabled = true
 	description.bbcode_text = ""

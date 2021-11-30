@@ -32,7 +32,7 @@ func populate(item_ids):
 	for id in item_ids.keys():
 		var item = item_display.instance();
 		items_grid.add_child(item)
-		item.init(id)
+		item.init(id, false)
 		item.connect("item_selected", self, "_on_item_selected", [item])
 	
 # Usually called before populate_shop to clear the shop of previos item displays
