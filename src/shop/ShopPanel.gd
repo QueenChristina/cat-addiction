@@ -85,6 +85,7 @@ func _on_BuyButton_pressed():
 	Globals.add_to_inventory(selected_item.id)
 	# Remove from future buyable items (TODO: calibrate amount)
 	Globals.buyable_items[selected_item.id] -= 1
+	self._on_item_selected(selected_item.id, selected_item)
 	if Globals.buyable_items[selected_item.id] <= 0:
 		Globals.buyable_items.erase(selected_item.id)
 	# Change shop text
@@ -92,6 +93,7 @@ func _on_BuyButton_pressed():
 		name_tag.bbcode_text = ""
 		description.bbcode_text = "Thank you for your mooolah!!!"
 		buy_button.disabled = true
+	
 
 
 func _on_Exit_icon_pressed(type):
