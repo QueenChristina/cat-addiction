@@ -76,6 +76,7 @@ func set_state(new_state):
 		#display_name = ""
 		price = -1
 		description = "Sold out." # to display in shop
+	# TODO: depends on if inventory or shop -- use global amount if shop, otherwise use inventory amount.
 	set_label_amount(Globals.buyable_items.get(id,0))
 	
 func set_label_amount(amount):

@@ -51,19 +51,19 @@ tracks/0/keys = {
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 8 )
-region = Rect2( 40, 0, 20, 20 )
+region = Rect2( 20, 0, 20, 20 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 8 )
-region = Rect2( 60, 0, 20, 20 )
+region = Rect2( 40, 0, 20, 20 )
 
 [sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 8 )
-region = Rect2( 0, 0, 20, 20 )
+region = Rect2( 60, 0, 20, 20 )
 
 [sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 8 )
-region = Rect2( 20, 0, 20, 20 )
+region = Rect2( 0, 0, 20, 20 )
 
 [sub_resource type="SpriteFrames" id=11]
 animations = [ {
@@ -74,22 +74,22 @@ animations = [ {
 }, {
 "frames": [ SubResource( 7 ) ],
 "loop": true,
-"name": "hairyPawter",
+"name": "bunny",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 8 ) ],
 "loop": true,
-"name": "redHerring",
+"name": "hairyPawter",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 9 ) ],
 "loop": true,
-"name": "birb",
+"name": "redHerring",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 10 ) ],
 "loop": true,
-"name": "bunny",
+"name": "birb",
 "speed": 5.0
 } ]
 

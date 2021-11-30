@@ -374,5 +374,6 @@ size_flags_vertical = 3
 [node name="Exit" parent="UI/Margin/AchievementsController/PastAchievements" instance=ExtResource( 9 )]
 make_visible_on_click = NodePath("..")
 
+[connection signal="opened" from="UI/Margin/TopInfo/BagButton" to="UI/Margin/InBag" method="update_bag"]
 [connection signal="equip" from="UI/Margin/InBag" to="Cat" method="_on_equip"]
 [connection signal="unequip" from="UI/Margin/InBag" to="Cat" method="_on_unequip"]

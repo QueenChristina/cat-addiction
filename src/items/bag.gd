@@ -40,10 +40,13 @@ func _on_item_selected(item_id, item):
 			other_item.state = "unselected"
 			
 	# Set button text based on item selected type
-	button_use.disabled = false
+	if item.type != "perma":
+		button_use.disabled = false
+	else:
+		button_use.disabled = true
 	if item.type == "consumable":
 		button_use.text = "Use"
-	elif item.type == "hat" or "mouth" or "body":
+	elif item.type == "hat" or item.type == "mouth" or item.type == "body":
 		if Globals.equipped[item.type] == item_id:
 			button_use.text = "Unequip"
 		else:
@@ -62,7 +65,7 @@ func _on_UseButton_pressed():
 		Globals.inventory[selected_item.id] -= 1
 		update_bag()
 	# If hat, body, or mouth, send signal to cat to equip appropirate attire
-	else:
+	elif selected_item.type == "hat" or selected_item.type == "mouth" or selected_item.type == "body":
 		if button_use.text == "Equip":
 			button_use.text = "Unequip"
 			# Swap with currently equipped item and add back to inventory
