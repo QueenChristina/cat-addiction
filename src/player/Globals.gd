@@ -9,10 +9,18 @@ export var chance_get_money = 0.1 # TODO: increase with upgrades, change money s
 var inventory = {"clicker" : 0,"pill" : 1, "weed" : 1, "cig" : 1} # Format of item_id : amount
 var equipped = {"hat" : "", "mouth" : "", "body" : ""} # Equipped items of format type : item_id
 var items = {}
-var buyable_items = {"clicker" : INF, "pill" : 1, "weed" : 1, "cig" : 1,
+var buyable_items = {					"propeller" : 1, "hairyPawter" : 1,
+					"poop" : 1, "bloodBod" : 1, "weedCape" : 1,
+					"blueSweater" : 1, "harryCape" : 1, "homeless" : 1,
+					"labCoat" : 1, "shots" : 1, "specialFlag1" : 1,
+					"superCape" : 1} # List of buyable items
+var all_items = {"clicker" : INF, "pill" : 1, "weed" : 1, "cig" : 1,
 					"bunny" : 1, "birb" : 1, "redHerring" : 1,
 					"propeller" : 1, "hairyPawter" : 1,
-					"poop" : 1} # List of buyable items by
+					"poop" : 1, "bloodBod" : 1, "weedCape" : 1,
+					"blueSweater" : 1, "harryCape" : 1, "homeless" : 1,
+					"labCoat" : 1, "shots" : 1, "specialFlag1" : 1,
+					"superCape" : 1} 
 # item_id : amount -- to be added to manually as you make more items and story
 # progresses and/or player gets richer
 var achievements = {}

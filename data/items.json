@@ -12,6 +12,9 @@
         "description" : "",
         "type" : "hat",
     },
+
+
+    "///////////////////////////////// HAT //////////////////////////////" : {},
     
     "hairyPawter" : {
         "name": "Hairy Pawter",
@@ -66,6 +69,9 @@
         "type" : "hat",
     },
 
+
+    "///////////////////////////////// MOUTH //////////////////////////////" : {},
+
     "cig" : {
         "name": "Cig",
         "price" : 32,
@@ -79,18 +85,80 @@
         "type" : "mouth",
     },
 
-    "weed_costume" : {
+
+    "///////////////////////////////// BODY //////////////////////////////" : {},
+
+    "bloodBod" : {
+        "name": "Bloody Bod",
+        "price" : 10,
+        "description" : "Your bodacious bod is bloody!",
+        "type" : "body",
+    },
+
+    "weedCape" : {
         "name": "Weed Cape",
         "price" : 420,
         "description" : "Wearable weed draped on your handsome shoulders.",
-        "type" : "hat",
-        "special_icon" : "NAME of special display icon - for items too big to fit in normal display",
+        "type" : "body",
     },
+
+    "blueSweater" : {
+        "name": "Blue Sweater",
+        "price" : 10,
+        "description" : "Granny BNY knitted this for you.",
+        "type" : "body",
+    },
+
+    "harryCape" : {
+        "name": "Harry Cape",
+        "price" : 10,
+        "description" : "Harry Pawter's cape",
+        "type" : "body",
+    },
+
+    "homeless" : {
+        "name": "New Home",
+        "price" : 10,
+        "description" : "Your new home, complete with smol companions.",
+        "type" : "body",
+    },
+
+    "labCoat" : {
+        "name": "Lab Coat",
+        "price" : 10,
+        "description" : "For *ahem* special purposes, and what's in your basement.",
+        "type" : "body",
+    },
+
+    "shots" : {
+        "name": "Special Shots",
+        "price" : 10,
+        "description" : "Directly into your bod! Yeah!",
+        "type" : "body",
+    },
+
+    "specialFlag1" : {
+        "name": "Striped cape 1",
+        "price" : 10,
+        "description" : "Special colored cape",
+        "type" : "body",
+    },
+
+    "superCape" : {
+        "name": "SuperCat Cape",
+        "price" : 10,
+        "description" : "So you can be super now too.",
+        "type" : "body",
+    },
+
+
+    "///////////////////////////////// SPECIAL //////////////////////////////" : {},
+
     "clicker" : {
         "name": "Auto Clicker",
         "price" : 25,
         "type" : "perma",
-        "description" : "Lore",
+        "description" : "Pet the cat automatically!",
         "special_icon" : "clicker",
     },
 

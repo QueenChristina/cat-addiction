@@ -12,7 +12,7 @@ var clickers=[]
 func _ready():
 	pass
 func add_clicker():
-	var c=auto_clicker_scene.instance()
+	var c = auto_clicker_scene.instance()
 	c.set_cat(cat)
 	add_child(c)
 	clickers.append(c)

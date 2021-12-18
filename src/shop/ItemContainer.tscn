@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=31 format=2]
 
 [ext_resource path="res://assets/ui/selectCubby.png" type="Texture" id=1]
 [ext_resource path="res://src/ui/SmolOrange.tres" type="Theme" id=2]
@@ -8,6 +8,8 @@
 [ext_resource path="res://src/items/HatDecor.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/items/MouthDecor.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/items/item_displays.png" type="Texture" id=8]
+[ext_resource path="res://src/items/BodyDecor.tscn" type="PackedScene" id=9]
+[ext_resource path="res://assets/items/item_displays_bod.png" type="Texture" id=10]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -50,22 +52,58 @@ tracks/0/keys = {
 }
 
 [sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 8 )
-region = Rect2( 20, 0, 20, 20 )
+atlas = ExtResource( 10 )
+region = Rect2( 140, 0, 20, 20 )
 
 [sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 8 )
-region = Rect2( 40, 0, 20, 20 )
+atlas = ExtResource( 10 )
+region = Rect2( 0, 0, 20, 20 )
 
 [sub_resource type="AtlasTexture" id=9]
 atlas = ExtResource( 8 )
-region = Rect2( 60, 0, 20, 20 )
+region = Rect2( 40, 0, 20, 20 )
 
 [sub_resource type="AtlasTexture" id=10]
 atlas = ExtResource( 8 )
+region = Rect2( 60, 0, 20, 20 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 8 )
+region = Rect2( 20, 0, 20, 20 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 10 )
+region = Rect2( 60, 0, 20, 20 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 10 )
+region = Rect2( 120, 0, 20, 20 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 10 )
+region = Rect2( 40, 0, 20, 20 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 10 )
+region = Rect2( 100, 0, 20, 20 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 10 )
+region = Rect2( 20, 0, 20, 20 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 10 )
+region = Rect2( 80, 0, 20, 20 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 8 )
 region = Rect2( 0, 0, 20, 20 )
 
-[sub_resource type="SpriteFrames" id=11]
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 10 )
+region = Rect2( 160, 0, 20, 20 )
+
+[sub_resource type="SpriteFrames" id=20]
 animations = [ {
 "frames": [  ],
 "loop": true,
@@ -74,22 +112,67 @@ animations = [ {
 }, {
 "frames": [ SubResource( 7 ) ],
 "loop": true,
-"name": "bunny",
+"name": "bloodBod",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 8 ) ],
 "loop": true,
-"name": "hairyPawter",
+"name": "weedCape",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 9 ) ],
 "loop": true,
-"name": "redHerring",
+"name": "hairyPawter",
 "speed": 5.0
 }, {
 "frames": [ SubResource( 10 ) ],
 "loop": true,
+"name": "redHerring",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 11 ) ],
+"loop": true,
+"name": "bunny",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 12 ) ],
+"loop": true,
+"name": "labCoat",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 13 ) ],
+"loop": true,
+"name": "blueSweater",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 14 ) ],
+"loop": true,
+"name": "specialFlag1",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 15 ) ],
+"loop": true,
+"name": "homeless",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 16 ) ],
+"loop": true,
+"name": "superCape",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 17 ) ],
+"loop": true,
+"name": "harryCape",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 18 ) ],
+"loop": true,
 "name": "birb",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 19 ) ],
+"loop": true,
+"name": "shots",
 "speed": 5.0
 } ]
 
@@ -141,10 +224,15 @@ visible = false
 position = Vector2( 10, 10 )
 playing = false
 
+[node name="BodyDecor" parent="Display" instance=ExtResource( 9 )]
+visible = false
+position = Vector2( -17.6987, -16.1068 )
+centered = false
+
 [node name="Displays" type="AnimatedSprite" parent="Display"]
 visible = false
-frames = SubResource( 11 )
-animation = "birb"
+frames = SubResource( 20 )
+animation = "superCape"
 centered = false
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

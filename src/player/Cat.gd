@@ -130,13 +130,22 @@ func _on_Sprite_animation_finished():
 		all_sprite.scale.x = -1 * all_sprite.scale.x
 
 func _on_equip(item_id, item_type):
+#	print("Equipped " + item_id)
 	if item_type == "hat":
 		hat_decor.animation = item_id # Assume matches item id
 	elif item_type == "mouth":
 		mouth_decor.animation = item_id
+	elif item_type == "body":
+		body_decor.animation = item_id
+	else:
+		print("EQUIP: did not implement equipping item type " + item_id)
 
 func _on_unequip(item_type):
 	if item_type == "hat":
 		hat_decor.animation = "default"
 	elif item_type == "mouth":
 		mouth_decor.animation = "default"
+	elif item_type == "body":
+		body_decor.animation = "default"
+	else:
+		print("UNEQUIP: did not implement equipping item type " + item_type)

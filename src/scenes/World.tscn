@@ -1,9 +1,10 @@
-[gd_scene load_steps=31 format=2]
+[gd_scene load_steps=37 format=2]
 
 [ext_resource path="res://assets/ui/Play.png" type="Texture" id=1]
 [ext_resource path="res://assets/ui/Pause.png" type="Texture" id=2]
 [ext_resource path="res://assets/ui/ShopIcon.png" type="Texture" id=3]
 [ext_resource path="res://src/bg/Background.tscn" type="PackedScene" id=4]
+[ext_resource path="res://src/UIIcons.gd" type="Script" id=5]
 [ext_resource path="res://src/items/InBag.tscn" type="PackedScene" id=6]
 [ext_resource path="res://src/player/Cat.tscn" type="PackedScene" id=7]
 [ext_resource path="res://assets/ui/1980v202002.ttf" type="DynamicFontData" id=8]
@@ -45,11 +46,20 @@ font_data = ExtResource( 8 )
 [sub_resource type="Theme" id=3]
 default_font = SubResource( 2 )
 
-[sub_resource type="StyleBoxFlat" id=4]
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[sub_resource type="StyleBoxEmpty" id=8]
+
+[sub_resource type="StyleBoxFlat" id=9]
 bg_color = Color( 0.890196, 0.231373, 0.00784314, 1 )
 
-[sub_resource type="Animation" id=5]
-resource_name = "notif"
+[sub_resource type="Animation" id=10]
 length = 2.5
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:rect_position")
@@ -64,7 +74,7 @@ tracks/0/keys = {
 "values": [ Vector2( -10, -45 ), Vector2( -10, -10 ), Vector2( -10, 10 ), Vector2( -10, 5 ), Vector2( -10, 10 ), Vector2( -10, -10 ), Vector2( -10, -45 ) ]
 }
 
-[sub_resource type="ParticlesMaterial" id=6]
+[sub_resource type="ParticlesMaterial" id=11]
 emission_shape = 2
 emission_box_extents = Vector3( 120, 1, 1 )
 flag_disable_z = true
@@ -80,7 +90,7 @@ color = Color( 0.776471, 0.776471, 0.776471, 1 )
 hue_variation = 0.51
 hue_variation_random = 1.0
 
-[sub_resource type="StyleBoxFlat" id=7]
+[sub_resource type="StyleBoxFlat" id=12]
 bg_color = Color( 0, 0, 0, 0.776471 )
 
 [node name="World" type="Node2D"]
@@ -160,6 +170,7 @@ margin_right = 116.0
 margin_bottom = 14.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
+script = ExtResource( 5 )
 
 [node name="SettingsButton" type="TextureButton" parent="UI/Margin/TopInfo"]
 margin_right = 10.0
@@ -197,7 +208,7 @@ margin_right = 42.0
 margin_bottom = 10.0
 texture_normal = ExtResource( 13 )
 script = ExtResource( 26 )
-make_visible_on_click = NodePath("../../InBag")
+make_visible_on_click = NodePath("../../VBoxContainer")
 
 [node name="ClickSound" type="AudioStreamPlayer" parent="UI/Margin/TopInfo/BagButton"]
 
@@ -220,14 +231,44 @@ make_visible_on_click = NodePath("../../AchievementsController/PastAchievements"
 [node name="HoverSound" type="AudioStreamPlayer" parent="UI/Margin/TopInfo/AchievementsButton"]
 stream = ExtResource( 27 )
 
-[node name="InBag" parent="UI/Margin" instance=ExtResource( 6 )]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Margin"]
 visible = false
-anchor_left = 0.0
-anchor_right = 0.0
 margin_left = 4.0
 margin_top = 4.0
 margin_right = 116.0
 margin_bottom = 176.0
+mouse_filter = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="InBag" parent="UI/Margin/VBoxContainer" instance=ExtResource( 6 )]
+anchor_left = 0.0
+anchor_right = 0.0
+margin_left = 0.0
+margin_top = 0.0
+margin_right = 112.0
+margin_bottom = 118.0
+size_flags_vertical = 3
+
+[node name="Exit" parent="UI/Margin/VBoxContainer/InBag" instance=ExtResource( 9 )]
+margin_left = 93.4156
+margin_top = 9.84786
+margin_right = 102.416
+margin_bottom = 18.8479
+make_visible_on_click = NodePath("../..")
+
+[node name="HideButton" type="Button" parent="UI/Margin/VBoxContainer"]
+margin_top = 122.0
+margin_right = 112.0
+margin_bottom = 172.0
+rect_min_size = Vector2( 0, 50 )
+mouse_filter = 1
+custom_styles/hover = SubResource( 4 )
+custom_styles/pressed = SubResource( 5 )
+custom_styles/focus = SubResource( 6 )
+custom_styles/disabled = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
 
 [node name="Shop" parent="UI/Margin" instance=ExtResource( 14 )]
 visible = false
@@ -250,7 +291,7 @@ margin_top = -45.0
 margin_right = 110.0
 margin_bottom = -10.0
 theme = ExtResource( 11 )
-custom_styles/panel = SubResource( 4 )
+custom_styles/panel = SubResource( 9 )
 script = ExtResource( 21 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -277,7 +318,7 @@ text = "Congrats! You got an achievement."
 scroll_active = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Margin/AchievementsController/Notification"]
-anims/notif = SubResource( 5 )
+anims/notif = SubResource( 10 )
 
 [node name="Confetti" type="Node2D" parent="UI/Margin/AchievementsController"]
 position = Vector2( 0, -15 )
@@ -291,7 +332,7 @@ amount = 40
 lifetime = 2.2
 one_shot = true
 randomness = 0.1
-process_material = SubResource( 6 )
+process_material = SubResource( 11 )
 
 [node name="CatsSpiral" type="CPUParticles2D" parent="UI/Margin/AchievementsController/Confetti"]
 visible = false
@@ -351,7 +392,7 @@ margin_right = 110.0
 margin_bottom = 170.0
 mouse_filter = 2
 theme = ExtResource( 11 )
-custom_styles/panel = SubResource( 7 )
+custom_styles/panel = SubResource( 12 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -372,8 +413,13 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 
 [node name="Exit" parent="UI/Margin/AchievementsController/PastAchievements" instance=ExtResource( 9 )]
+margin_left = 106.811
+margin_top = 7.25
+margin_right = 115.811
+margin_bottom = 16.25
 make_visible_on_click = NodePath("..")
 
-[connection signal="opened" from="UI/Margin/TopInfo/BagButton" to="UI/Margin/InBag" method="update_bag"]
-[connection signal="equip" from="UI/Margin/InBag" to="Cat" method="_on_equip"]
-[connection signal="unequip" from="UI/Margin/InBag" to="Cat" method="_on_unequip"]
+[connection signal="opened" from="UI/Margin/TopInfo/BagButton" to="UI/Margin/VBoxContainer/InBag" method="update_bag"]
+[connection signal="equip" from="UI/Margin/VBoxContainer/InBag" to="Cat" method="_on_equip"]
+[connection signal="unequip" from="UI/Margin/VBoxContainer/InBag" to="Cat" method="_on_unequip"]
+[connection signal="pressed" from="UI/Margin/VBoxContainer/HideButton" to="UI/Margin/VBoxContainer/InBag/Exit" method="_got_clicked"]

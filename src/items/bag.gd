@@ -77,6 +77,6 @@ func _on_UseButton_pressed():
 			emit_signal("unequip", selected_item.type)
 			Globals.equipped[selected_item.type] = ""
 
-# Hacky workaround with UIs to hide when click off of bag
-func _on_HideButton_pressed():
-	self.hide()
+## Hacky workaround with UIs to hide when click off of bag
+#func _on_HideButton_pressed():
+#	self.hide()

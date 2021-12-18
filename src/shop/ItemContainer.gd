@@ -55,6 +55,8 @@ func init(item_id, is_shown_in_inventory):
 			item_icon = items.get_node("HatDecor")
 		elif type == "mouth":
 			item_icon = items.get_node("MouthDecor")
+		elif type == "body":
+			item_icon = items.get_node("BodyDecor")
 		else:
 			print("WARNING: unknown item type.")
 			item_icon = items.get_node("Item")
