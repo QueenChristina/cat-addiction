@@ -27,7 +27,7 @@ onready var all_sprite = $Base/ShakeBase # Change position of sprite for shaking
 onready var hat_decor = $Base/ShakeBase/HatDecor # For shaking separately, (Default to one position)
 onready var mouth_decor = $Base/ShakeBase/MouthDecor # For shaking separately, (Default to one position)
 onready var body_decor = $Base/ShakeBase/BodyDecor
-onready var sprite = $Base/ShakeBase/Sprite
+onready var sprite = $Base/ShakeBase/Sprite # TODO: change spriteFrames as story progresses
 onready var sound_meow = $Mew
 
 # Called when the node enters the scene tree for the first time.
