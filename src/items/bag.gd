@@ -70,12 +70,10 @@ func _on_UseButton_pressed():
 			button_use.text = "Unequip"
 			# Swap with currently equipped item and add back to inventory
 			var old_equipped_id = Globals.equipped[selected_item.type]
-			Globals.equipped[selected_item.type] = selected_item.id
 			emit_signal("equip", selected_item.id, selected_item.type)
 		elif button_use.text == "Unequip":
 			button_use.text = "Equip"
 			emit_signal("unequip", selected_item.type)
-			Globals.equipped[selected_item.type] = ""
 
 ## Hacky workaround with UIs to hide when click off of bag
 #func _on_HideButton_pressed():

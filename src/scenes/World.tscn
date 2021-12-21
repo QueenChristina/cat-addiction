@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=2]
+[gd_scene load_steps=63 format=2]
 
 [ext_resource path="res://assets/ui/Play.png" type="Texture" id=1]
 [ext_resource path="res://assets/ui/Pause.png" type="Texture" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://src/shop/Shop_Panel.tscn" type="PackedScene" id=14]
 [ext_resource path="res://assets/audio/274119__trollox-78__hit-someting.mp3" type="AudioStream" id=15]
 [ext_resource path="res://assets/ui/gear.png" type="Texture" id=16]
+[ext_resource path="res://src/money/MoneyController.gd" type="Script" id=17]
 [ext_resource path="res://assets/ui/achievenment.png" type="Texture" id=18]
 [ext_resource path="res://src/ui/AchievementsController.gd" type="Script" id=19]
 [ext_resource path="res://assets/player/cat.png" type="Texture" id=20]
@@ -126,7 +127,6 @@ bg_color = Color( 0, 0, 0, 0.776471 )
 
 [sub_resource type="Animation" id=13]
 resource_name = "Intro"
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath("Tutorial/BlockInput:visible")
 tracks/0/interp = 1
@@ -222,6 +222,54 @@ tracks/7/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ true ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Cat/Base/ShakeBase/MouthDecor:animation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "default" ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Cat/Base/ShakeBase/Sprite:animation")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ "sleep" ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("Cat:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Cat:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 58.8657, 136.164 ) ]
 }
 
 [sub_resource type="Animation" id=25]
@@ -337,6 +385,56 @@ tracks/6/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ "Click here to buy and use drugs! :)" ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Cat:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0, 3, 4.4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 58.8657, 136.164 ), Vector2( 160.366, 137.164 ), Vector2( 58.8657, 136.164 ) ]
+}
+tracks/8/type = "value"
+tracks/8/path = NodePath("Cat/Base/ShakeBase/Sprite:animation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 0, 0.9, 1.5, 2.4, 3.1, 3.8, 4.4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "walk", "walk", "walk", "walk", "walk", "walk", "stand" ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("Cat:scale")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 1, 1 ), Vector2( -1, 1 ) ]
+}
+tracks/10/type = "method"
+tracks/10/path = NodePath("Cat")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "cig", "mouth" ],
+"method": "_on_equip"
+} ]
 }
 
 [sub_resource type="Animation" id=24]
@@ -463,10 +561,10 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0.5, 4 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 0.5, 4 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ true, false ]
+"values": [ false, true, false ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("Tutorial/PanelContainer/Label:text")
@@ -652,6 +750,13 @@ graph_offset = Vector2( -157, -39 )
 [node name="Cat" parent="." instance=ExtResource( 7 )]
 position = Vector2( 58.8657, 136.164 )
 
+[node name="Sprite" parent="Cat/Base/ShakeBase" index="0"]
+animation = "sleep"
+frame = 0
+
+[node name="Money" type="Node2D" parent="."]
+script = ExtResource( 17 )
+
 [node name="AutoClickers" type="Node2D" parent="."]
 script = ExtResource( 25 )
 
@@ -685,7 +790,7 @@ __meta__ = {
 
 [node name="Arrow" type="Node2D" parent="Tutorial"]
 visible = false
-position = Vector2( 1.57286, 1.57286 )
+position = Vector2( 1.73047, 1.73047 )
 
 [node name="Line2D" type="Line2D" parent="Tutorial/Arrow"]
 position = Vector2( -3.23239, 2.56052 )
@@ -851,8 +956,8 @@ stream = ExtResource( 27 )
 
 [node name="AchievementsButton" type="TextureButton" parent="UI/Margin/TopInfo"]
 visible = false
-margin_left = 46.0
-margin_right = 56.0
+margin_left = 14.0
+margin_right = 24.0
 margin_bottom = 10.0
 texture_normal = ExtResource( 18 )
 script = ExtResource( 26 )
@@ -1058,6 +1163,7 @@ margin_bottom = 16.25
 make_visible_on_click = NodePath("..")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "Intro"
 anims/Intro = SubResource( 13 )
 anims/Intro_call2action = SubResource( 25 )
 anims/Intro_ending1 = SubResource( 31 )
@@ -1074,6 +1180,7 @@ stream = ExtResource( 15 )
 [node name="AnimationTree" type="AnimationTree" parent="AnimationPlayer"]
 tree_root = SubResource( 20 )
 anim_player = NodePath("..")
+active = true
 parameters/playback = SubResource( 21 )
 
 [connection signal="end_tutorial" from="Cat" to="AnimationPlayer" method="_on_Cat_end_tutorial"]

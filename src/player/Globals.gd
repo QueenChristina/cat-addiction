@@ -6,10 +6,10 @@ signal achievement_reached(id)
 var bank = 1000 # amount of money
 var score = 0 setget set_score
 export var chance_get_money = 0.1 # TODO: increase with upgrades, change money spawns when click cat
-var inventory = {"clicker" : 0, "redHerring" : 1} # Format of item_id : amount
+var inventory = {"clicker" : 0, "cig" : 1} # Format of item_id : amount
 var equipped = {"hat" : "", "mouth" : "", "body" : ""} # Equipped items of format type : item_id
 var items = {} # Database of all items
-var buyable_items = {"pill" : 1, "weed" : 1, "cig" : 1} # List of buyable items
+var buyable_items = {"pill" : 1, "weed" : 1} # List of buyable items
 
 var all_items = {	 # Special items
 					"clicker" : INF, 

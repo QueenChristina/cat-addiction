@@ -69,7 +69,7 @@ animations = [ {
 "speed": 5.0
 }, {
 "frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
-"loop": false,
+"loop": true,
 "name": "meow",
 "speed": 5.0
 } ]
@@ -151,7 +151,8 @@ script = ExtResource( 6 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Base/ShakeBase"]
 frames = SubResource( 12 )
-animation = "sleep"
+animation = "walk"
+frame = 1
 playing = true
 
 [node name="BodyDecor" parent="Base/ShakeBase" instance=ExtResource( 4 )]

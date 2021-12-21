@@ -48,7 +48,7 @@ func clicky(event_pos):
 	Globals.score += 1
 	set_shake(true)
 	_on_play_sound("chonk", rand_range(0.95, 1.05))
-	if rand_range(0, 1) < chance_meow and state != States.MEOWING:
+	if rand_range(0, 1) < chance_meow and state != States.MEOWING and state != States.WALKING:
 		_change_state(States.MEOWING)
 	# Spawn love and money
 	var new_spark = love.instance()
@@ -146,6 +146,7 @@ func _on_Sprite_animation_finished():
 
 func _on_equip(item_id, item_type):
 #	print("Equipped " + item_id)
+	Globals.equipped[item_type] = item_id
 	if item_type == "hat":
 		hat_decor.animation = item_id # Assume matches item id
 	elif item_type == "mouth":
@@ -156,6 +157,7 @@ func _on_equip(item_id, item_type):
 		print("EQUIP: did not implement equipping item type " + item_id)
 
 func _on_unequip(item_type):
+	Globals.equipped[item_type] = ""
 	if item_type == "hat":
 		hat_decor.animation = "default"
 	elif item_type == "mouth":
