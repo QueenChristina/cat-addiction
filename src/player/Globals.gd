@@ -13,6 +13,7 @@ var buyable_items = {"pill" : 1, "weed" : 1} # List of buyable items
 
 var all_items = {	 # Special items
 					"clicker" : INF, 
+					"clicker_upgrade_hz" : 5,
 					# Mouth
 					"cig" : 1,
 					# Hats
@@ -30,6 +31,10 @@ var all_items = {	 # Special items
 var achievements = {}
 var score_to_achievement = {}
 var SHOP_REFRESH_RATE = 50 # amount of score to go through before refreshing shop, upgradable?
+
+# Boosters
+var dpm = 0 # (Not including clickers used)
+var clicker_hz = 0.5
 
 func _ready():
 	items = loadFile("res://data/items.json")
@@ -56,9 +61,13 @@ func set_score(val):
 		emit_signal("achievement_reached", score_to_achievement[str(val)])
 	
 func add_to_inventory(item_id):
-	if(item_id=="clicker"):
-		
+	# Special item effects
+	if(item_id == "clicker"):
 		get_node("../World/AutoClickers").add_clicker()
+	elif (item_id == "clicker_upgrade_hz"):
+		Globals.clicker_hz += 0.1
+		
+	# Change amount as expected
 	if !Globals.inventory.has(item_id):
 		Globals.inventory[item_id] = 1
 	else:

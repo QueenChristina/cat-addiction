@@ -11,6 +11,8 @@
         "price" : 0,
         "description" : "",
         "type" : "hat",
+        "dpm_per_sec" : 0,
+        "withdrawal" : 0,
     },
 
 
@@ -133,8 +135,10 @@
     "shots" : {
         "name": "Special Shots",
         "price" : 10,
-        "description" : "Directly into your bod! Yeah!",
+        "description" : "Directly into your bod! Yeah! [color=green]\n+1 dpm/sec[/color]*",
         "type" : "body",
+        "dpm_per_sec" : 1,
+        "withdrawal" : 1,
     },
 
     "specialFlag1" : {
@@ -155,11 +159,17 @@
     "///////////////////////////////// SPECIAL //////////////////////////////" : {},
 
     "clicker" : {
-        "name": "Auto Clicker",
+        "name": "AutoPetter",
         "price" : 25,
         "type" : "perma",
         "description" : "Pet the cat automatically!",
         "special_icon" : "clicker",
+    },
+    "clicker_upgrade_hz" : {
+        "name": "AutoPetter+",
+        "price" : 25,
+        "type" : "perma",
+        "description" : "Increase productivity of the AutoPetter!",
     },
 
     "boost_gems" : {
@@ -170,32 +180,32 @@
         "duration" : 10,
         "duration_change" : "something decreasing but not entirely to 0",
     },
-    "boost_money" : {
-        "name": "Money Boost",
+    "boost_money_rate" : {
+        "name": "Money printers go choo choo",
         "price" : 100,
         "description" : "Temporarily boost the rate of money.",
         "price_change" : "10 * x + 100",
         "duration" : 10,
     },
+    "boost_money_value" : {
+        "name": "Revaluation",
+        "price" : 100,
+        "description" : "Increase value of dollar bill.",
+        "price_change" : "10 * x + 100",
+        "duration" : 10,
+    },
     "boost_count" : {
-        "name": "Score Boost",
+        "name": "Dopamine Petter Boost",
         "price" : 100,
         "description" : "Temporarily boost clicker ability (click more for one).",
         "price_change" : "10 * x + 100",
         "duration" : 10,
     },
 
-    "auto_clicker" : {
-        "name" : "AutoPetter",
-        "type" : "perma",
-        "price" : 100,
-        "description" : "Automatically pets the cat periodically.",
-        "price_change" : "10 * x + 100",
-    },
     "auto_clicker_upgrade" : {
         "name" : "AutoPetter Upgrade",
         "price" : 200,
-        "description" : "Increase productivity of all AutoPetters -- pet faster!",
+        "description" : "Increase productivity of all AutoPetters - pet faster!",
         "price_change" : "10 * x + 200",
     }
 }

@@ -1,0 +1,85 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://src/Effects/screenGradient.gd" type="Script" id=1]
+
+[sub_resource type="Gradient" id=9]
+colors = PoolColorArray( 1, 0.882353, 0.0941176, 0.376471, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=10]
+gradient = SubResource( 9 )
+
+[sub_resource type="Gradient" id=3]
+colors = PoolColorArray( 1, 0.882353, 0.0941176, 0.376471, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=4]
+gradient = SubResource( 3 )
+
+[sub_resource type="Gradient" id=5]
+colors = PoolColorArray( 1, 0.882353, 0.0941176, 0.376471, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=6]
+gradient = SubResource( 5 )
+
+[sub_resource type="Gradient" id=7]
+colors = PoolColorArray( 1, 0.882353, 0.0941176, 0.376471, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=8]
+gradient = SubResource( 7 )
+
+[node name="GradCol" type="Node2D"]
+position = Vector2( 0.26487, 0.598572 )
+script = ExtResource( 1 )
+col = Color( 1, 0.882353, 0.0941176, 0.376471 )
+
+[node name="grad1" type="TextureRect" parent="."]
+margin_left = -0.778477
+margin_top = -0.537422
+margin_right = 24.2215
+margin_bottom = 180.463
+mouse_filter = 2
+texture = SubResource( 10 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="grad2" type="TextureRect" parent="."]
+margin_left = 95.4057
+margin_top = -1.04274
+margin_right = 120.406
+margin_bottom = 179.957
+rect_rotation = 0.0161976
+mouse_filter = 2
+texture = SubResource( 4 )
+expand = true
+flip_h = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="grad3" type="TextureRect" parent="."]
+margin_left = 139.911
+margin_top = -1.21485
+margin_right = 164.911
+margin_bottom = 179.785
+rect_rotation = 89.8186
+mouse_filter = 2
+texture = SubResource( 6 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="grad4" type="TextureRect" parent="."]
+margin_left = 145.971
+margin_top = 154.35
+margin_right = 170.971
+margin_bottom = 335.35
+rect_rotation = 89.8186
+mouse_filter = 2
+texture = SubResource( 8 )
+expand = true
+flip_h = true
+__meta__ = {
+"_edit_use_anchors_": false
+}

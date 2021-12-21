@@ -9,7 +9,7 @@
     "welcome" : {
         "occur_at_count" : 1,
         "name": "Welcome to your new addiction!",
-        "description" : "Congrats!!! You clicky the cat.",
+        "description" : "Congrats!!! You clicky the cat. Now click it more.",
         "icon" : "welcome",
         "confetti" : "cats",
     },

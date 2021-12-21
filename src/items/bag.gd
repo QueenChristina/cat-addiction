@@ -43,7 +43,9 @@ func _on_item_selected(item_id, item):
 	if item.type != "perma":
 		button_use.disabled = false
 	else:
+		button_use.text = "In use"
 		button_use.disabled = true
+		
 	if item.type == "consumable":
 		button_use.text = "Use"
 	elif item.type == "hat" or item.type == "mouth" or item.type == "body":

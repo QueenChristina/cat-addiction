@@ -3,7 +3,7 @@
 [ext_resource path="res://src/items/AutoClicker.gd" type="Script" id=1]
 [ext_resource path="res://assets/ui/MouseCursor.png" type="Texture" id=2]
 
-[sub_resource type="SpriteFrames" id=10]
+[sub_resource type="SpriteFrames" id=1]
 animations = [ {
 "frames": [ ExtResource( 2 ) ],
 "loop": true,
@@ -19,6 +19,6 @@ animations = [ {
 [node name="AutoClicker" type="AnimatedSprite"]
 position = Vector2( 91.6147, 156.411 )
 scale = Vector2( 0.25, 0.25 )
-frames = SubResource( 10 )
+frames = SubResource( 1 )
 centered = false
 script = ExtResource( 1 )

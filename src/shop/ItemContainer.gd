@@ -32,21 +32,18 @@ func init(item_id, is_shown_in_inventory):
 	show_inventory_amount = is_shown_in_inventory
 	var item_info = Globals.items[id]
 	
-	if show_inventory_amount:
-		set_label_amount(Globals.inventory.get(id, 0))
-	else:
-		set_label_amount(Globals.buyable_items.get(id,0))
+	set_label()
 	
 	display_name = item_info["name"]
 	price = item_info["price"]
 	description = item_info["description"]
 	type = item_info.get("type","")
-	if item_info.has("special_icon"):
-		# for items with special icons just for display TODO: delete this, instead use Displays
-		item_icon = items.get_node("Item")
-		if id=="clicker":
-			item_icon.texture=load("res://assets/shop_items/clicker.png")
-	elif items.get_node("Displays").frames.has_animation(id):
+#	if item_info.has("special_icon"):
+#		# for items with special icons just for display TODO: delete this, instead use Displays
+#		item_icon = items.get_node("Item")
+#		if id == "clicker":
+#			item_icon.texture = load("res://assets/shop_items/clicker.png")
+	if items.get_node("Displays").frames.has_animation(id):
 		# Use displays for this item different from what is used for cat
 		item_icon = items.get_node("Displays")
 		item_icon.animation = id
@@ -85,8 +82,15 @@ func set_state(new_state):
 		price = -1
 		description = "Sold out." # to display in shop
 	# depends on if inventory or shop -- use global amount if shop, otherwise use inventory amount
+	set_label()
+	
+# Wrapper function for set_label_amount based on if inventory or shop display
+func set_label():
 	if show_inventory_amount:
 		set_label_amount(Globals.inventory.get(id, 0))
+		# Hide if amount == 1, personal visual style
+		if Globals.inventory.get(id, 0) == 1:
+			$Available.text = ""
 	else:
 		set_label_amount(Globals.buyable_items.get(id,0))
 	

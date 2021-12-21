@@ -1,12 +1,8 @@
 extends Node2D
 
-
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
-onready var cat=get_node("../Cat")
+onready var cat = get_node("../Cat")
 var auto_clicker_scene = preload("res://src/scenes/AutoClicker.tscn")
-var clickers=[]
+var clickers = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

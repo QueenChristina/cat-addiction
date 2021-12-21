@@ -1,4 +1,4 @@
-[gd_scene load_steps=63 format=2]
+[gd_scene load_steps=71 format=2]
 
 [ext_resource path="res://assets/ui/Play.png" type="Texture" id=1]
 [ext_resource path="res://assets/ui/Pause.png" type="Texture" id=2]
@@ -27,6 +27,9 @@
 [ext_resource path="res://src/scenes/AutoClickers.gd" type="Script" id=25]
 [ext_resource path="res://src/ui/TopButton.gd" type="Script" id=26]
 [ext_resource path="res://assets/audio/Chonk.wav" type="AudioStream" id=27]
+[ext_resource path="res://src/shop/ShopUpgrades.gd" type="Script" id=28]
+[ext_resource path="res://src/Effects/StatusEffects.gd" type="Script" id=29]
+[ext_resource path="res://src/Effects/screenGradient.tscn" type="PackedScene" id=30]
 
 [sub_resource type="Animation" id=36]
 resource_name = "float"
@@ -43,6 +46,28 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 0 ), Vector2( 3, 3 ) ]
+}
+
+[sub_resource type="Animation" id=38]
+resource_name = "float"
+length = 2.0
+loop = true
+
+[sub_resource type="Animation" id=39]
+resource_name = "float2"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( -39.5627, 57.1049 ), Vector2( -32.0812, 51.9803 ) ]
 }
 
 [sub_resource type="StyleBoxFlat" id=34]
@@ -124,6 +149,115 @@ hue_variation_random = 1.0
 
 [sub_resource type="StyleBoxFlat" id=12]
 bg_color = Color( 0, 0, 0, 0.776471 )
+
+[sub_resource type="Animation" id=41]
+resource_name = "happy"
+length = 4.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("HurtCol:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HappyCol:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HappyCol:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 1.1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=42]
+resource_name = "hurt"
+length = 2.0
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("HappyCol:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HurtCol:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("HurtCol:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.4, 1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=40]
+resource_name = "neutral"
+tracks/0/type = "value"
+tracks/0/path = NodePath("HappyCol:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("HurtCol:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
 
 [sub_resource type="Animation" id=13]
 resource_name = "Intro"
@@ -301,7 +435,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=31]
 resource_name = "Intro_ending1"
-length = 10.0
+length = 25.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("Tutorial/Info:bbcode_text")
 tracks/0/interp = 1
@@ -309,10 +443,12 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 4.2, 8.1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 4.2, 8.1, 9.7, 15, 20.2, 24.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ "[center]You know what would make me even [shake rate=10 level=2][rainbow freq=0.9 sat=10 val=20]happier[/rainbow][/shake] tho?[/center]", "[center][shake rate=10 level=2][rainbow freq=0.9 sat=10 val=20]Drugs!!![/rainbow][/shake][/center]", "" ]
+"values": [ "[center]You know what would make me even [shake rate=10 level=2][rainbow freq=0.9 sat=10 val=20]happier[/rainbow][/shake] tho?[/center]", "[center][shake rate=10 level=2][rainbow freq=0.9 sat=10 val=20]Drugs!!![/rainbow][/shake][/center]", "[center][shake rate=10 level=2]...[/shake][/center]", "[center]Do what you can to increase my [shake rate=10 level=2][rainbow freq=0.9 sat=10 val=20]dopamine!!![/rainbow][/shake][/center]", "[center]Ok, it's up to you now!
+Remember - my  [shake rate=10 level=2][rainbow freq=0.9 sat=10 val=20]happiness[/rainbow][/shake] is your [shake rate=10 level=2][rainbow freq=0.9 sat=10 val=20]happiness[/rainbow][/shake].[/center]", "[center][wave amp=20 freq=2] Our [shake rate=10 level=2][rainbow freq=0.9 sat=10 val=20]happiness[/rainbow][/shake],[/wave]
+comrade.[/center]", "" ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Tutorial/BlockInput:visible")
@@ -369,7 +505,7 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 4.4, 9.9 ),
+"times": PoolRealArray( 4.4, 8.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -435,6 +571,18 @@ tracks/10/keys = {
 "args": [ "cig", "mouth" ],
 "method": "_on_equip"
 } ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("Tutorial/ArrowCount:visible")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0, 9.7, 14.8 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false ]
 }
 
 [sub_resource type="Animation" id=24]
@@ -561,10 +709,10 @@ tracks/4/loop_wrap = true
 tracks/4/imported = false
 tracks/4/enabled = true
 tracks/4/keys = {
-"times": PoolRealArray( 0, 0.5, 4 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PoolRealArray( 0, 0.1, 0.5, 4 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ false, true, false ]
+"values": [ false, false, true, false ]
 }
 tracks/5/type = "value"
 tracks/5/path = NodePath("Tutorial/PanelContainer/Label:text")
@@ -573,10 +721,11 @@ tracks/5/loop_wrap = true
 tracks/5/imported = false
 tracks/5/enabled = true
 tracks/5/keys = {
-"times": PoolRealArray( 0.5 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.5, 0.501 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 1,
-"values": [ "Click here for
+"values": [ "...", "Click here for
+achievements", "Click here for
 achievements" ]
 }
 tracks/6/type = "value"
@@ -751,7 +900,7 @@ graph_offset = Vector2( -157, -39 )
 position = Vector2( 58.8657, 136.164 )
 
 [node name="Sprite" parent="Cat/Base/ShakeBase" index="0"]
-animation = "sleep"
+frame = 0
 
 [node name="Money" type="Node2D" parent="."]
 script = ExtResource( 17 )
@@ -760,6 +909,7 @@ script = ExtResource( 17 )
 script = ExtResource( 25 )
 
 [node name="Tutorial" type="Node2D" parent="."]
+visible = false
 __meta__ = {
 "_editor_description_": ""
 }
@@ -774,11 +924,14 @@ custom_colors/default_color = Color( 0.929412, 0.270588, 0.00784314, 1 )
 bbcode_enabled = true
 bbcode_text = "[center]Hello! I am [shake rate=10 level=2]cat.[/shake][/center]"
 text = "Hello! I am cat."
+fit_content_height = true
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="BlockInput" type="Container" parent="Tutorial"]
+visible = false
 margin_left = 40.6586
 margin_top = 118.794
 margin_right = 80.6586
@@ -789,29 +942,62 @@ __meta__ = {
 
 [node name="Arrow" type="Node2D" parent="Tutorial"]
 visible = false
-position = Vector2( 1.73047, 1.73047 )
 
 [node name="Line2D" type="Line2D" parent="Tutorial/Arrow"]
 position = Vector2( -3.23239, 2.56052 )
 points = PoolVector2Array( 25.1572, 87.9013, 43.8313, 114.442 )
 default_color = Color( 1, 0.392157, 0.392157, 1 )
 begin_cap_mode = 2
+antialiased = true
 
 [node name="Line2D2" type="Line2D" parent="Tutorial/Arrow"]
 position = Vector2( -3.23239, 2.56052 )
 points = PoolVector2Array( 47.4526, 96.37, 42.5027, 119.214 )
 default_color = Color( 1, 0.392157, 0.392157, 1 )
 begin_cap_mode = 2
+antialiased = true
 
 [node name="Line2D3" type="Line2D" parent="Tutorial/Arrow"]
 position = Vector2( -3.23239, 2.56052 )
 points = PoolVector2Array( 24.5951, 111.128, 48.2871, 115.998 )
 default_color = Color( 1, 0.392157, 0.392157, 1 )
 begin_cap_mode = 2
+antialiased = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Tutorial/Arrow"]
 autoplay = "float"
 anims/float = SubResource( 36 )
+
+[node name="ArrowCount" type="Node2D" parent="Tutorial"]
+visible = false
+position = Vector2( -34.9221, 53.9263 )
+rotation = -1.53583
+
+[node name="Line2D" type="Line2D" parent="Tutorial/ArrowCount"]
+position = Vector2( -3.23239, 2.56052 )
+points = PoolVector2Array( 25.1572, 87.9013, 43.8313, 114.442 )
+default_color = Color( 1, 0.392157, 0.392157, 1 )
+begin_cap_mode = 2
+antialiased = true
+
+[node name="Line2D2" type="Line2D" parent="Tutorial/ArrowCount"]
+position = Vector2( -3.23239, 2.56052 )
+points = PoolVector2Array( 47.4526, 96.37, 42.5027, 119.214 )
+default_color = Color( 1, 0.392157, 0.392157, 1 )
+begin_cap_mode = 2
+antialiased = true
+
+[node name="Line2D3" type="Line2D" parent="Tutorial/ArrowCount"]
+position = Vector2( -3.23239, 2.56052 )
+points = PoolVector2Array( 24.5951, 111.128, 48.2871, 115.998 )
+default_color = Color( 1, 0.392157, 0.392157, 1 )
+begin_cap_mode = 2
+antialiased = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Tutorial/ArrowCount"]
+autoplay = "float2"
+anims/float = SubResource( 38 )
+anims/float2 = SubResource( 39 )
 
 [node name="PanelContainer" type="PanelContainer" parent="Tutorial"]
 visible = false
@@ -831,8 +1017,7 @@ margin_right = 74.0
 margin_bottom = 26.0
 theme = ExtResource( 11 )
 custom_colors/default_color = Color( 0.929412, 0.270588, 0.00784314, 1 )
-text = "Click here for
-achievements"
+text = "..."
 fit_content_height = true
 
 [node name="UI" type="CanvasLayer" parent="."]
@@ -862,17 +1047,17 @@ animation = "pause"
 [node name="bgMusic" type="AudioStreamPlayer" parent="UI/Margin/Play"]
 
 [node name="Scores" type="VBoxContainer" parent="UI/Margin"]
-margin_left = 94.0
+margin_left = 68.0
 margin_top = 4.0
 margin_right = 116.0
-margin_bottom = 26.0
+margin_bottom = 35.0
 grow_horizontal = 0
 size_flags_horizontal = 8
 size_flags_vertical = 0
 custom_constants/separation = -2
 
 [node name="Score" type="Label" parent="UI/Margin/Scores"]
-margin_right = 22.0
+margin_right = 48.0
 margin_bottom = 13.0
 grow_horizontal = 0
 grow_vertical = 2
@@ -887,12 +1072,25 @@ __meta__ = {
 
 [node name="Money" type="Label" parent="UI/Margin/Scores"]
 margin_top = 11.0
-margin_right = 22.0
+margin_right = 48.0
 margin_bottom = 22.0
 size_flags_horizontal = 11
 theme = ExtResource( 11 )
 custom_colors/font_color = Color( 0.890196, 0.231373, 0.00784314, 1 )
 text = "$133"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="dpm_per_sec" type="Label" parent="UI/Margin/Scores"]
+margin_top = 20.0
+margin_right = 48.0
+margin_bottom = 31.0
+size_flags_horizontal = 11
+theme = ExtResource( 11 )
+custom_colors/font_color = Color( 0.992157, 0.819608, 0.301961, 1 )
+text = "10 dpm/s"
 align = 2
 __meta__ = {
 "_edit_use_anchors_": false
@@ -921,9 +1119,9 @@ __meta__ = {
 
 [node name="HoverSound" type="AudioStreamPlayer" parent="UI/Margin/TopInfo/SettingsButton"]
 stream = ExtResource( 27 )
+volume_db = -10.0
 
 [node name="ShopButton" type="TextureButton" parent="UI/Margin/TopInfo"]
-visible = false
 margin_left = 14.0
 margin_right = 26.0
 margin_bottom = 10.0
@@ -938,9 +1136,9 @@ make_visible_on_click = NodePath("../../Shop")
 
 [node name="HoverSound" type="AudioStreamPlayer" parent="UI/Margin/TopInfo/ShopButton"]
 stream = ExtResource( 27 )
+volume_db = -10.0
 
 [node name="BagButton" type="TextureButton" parent="UI/Margin/TopInfo"]
-visible = false
 margin_left = 30.0
 margin_right = 42.0
 margin_bottom = 10.0
@@ -952,11 +1150,11 @@ make_visible_on_click = NodePath("../../VBoxContainer")
 
 [node name="HoverSound" type="AudioStreamPlayer" parent="UI/Margin/TopInfo/BagButton"]
 stream = ExtResource( 27 )
+volume_db = -10.0
 
 [node name="AchievementsButton" type="TextureButton" parent="UI/Margin/TopInfo"]
-visible = false
-margin_left = 14.0
-margin_right = 24.0
+margin_left = 46.0
+margin_right = 56.0
 margin_bottom = 10.0
 texture_normal = ExtResource( 18 )
 script = ExtResource( 26 )
@@ -969,6 +1167,7 @@ make_visible_on_click = NodePath("../../AchievementsController/PastAchievements"
 
 [node name="HoverSound" type="AudioStreamPlayer" parent="UI/Margin/TopInfo/AchievementsButton"]
 stream = ExtResource( 27 )
+volume_db = -10.0
 
 [node name="VBoxContainer" type="VBoxContainer" parent="UI/Margin"]
 pause_mode = 2
@@ -1021,6 +1220,9 @@ margin_left = 4.0
 margin_top = 4.0
 margin_right = 116.0
 margin_bottom = 176.0
+
+[node name="ShopUpgrades" type="Node" parent="UI/Margin/Shop"]
+script = ExtResource( 28 )
 
 [node name="AchievementsController" type="Node2D" parent="UI/Margin"]
 pause_mode = 2
@@ -1161,8 +1363,30 @@ margin_right = 115.811
 margin_bottom = 16.25
 make_visible_on_click = NodePath("..")
 
+[node name="StatusEffects" type="Node2D" parent="."]
+script = ExtResource( 29 )
+
+[node name="Timer" type="Timer" parent="StatusEffects"]
+autostart = true
+
+[node name="HappyCol" parent="StatusEffects" instance=ExtResource( 30 )]
+visible = false
+modulate = Color( 1, 1, 1, 0.80349 )
+col = Color( 1, 0.968627, 0.2, 0.537255 )
+
+[node name="HurtCol" parent="StatusEffects" instance=ExtResource( 30 )]
+visible = false
+modulate = Color( 1, 1, 1, 0.526257 )
+col = Color( 0.568627, 0, 0, 0.376471 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="StatusEffects"]
+autoplay = "neutral"
+playback_speed = 0.5
+anims/happy = SubResource( 41 )
+anims/hurt = SubResource( 42 )
+anims/neutral = SubResource( 40 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "Intro"
 anims/Intro = SubResource( 13 )
 anims/Intro_call2action = SubResource( 25 )
 anims/Intro_ending1 = SubResource( 31 )
@@ -1179,7 +1403,6 @@ stream = ExtResource( 15 )
 [node name="AnimationTree" type="AnimationTree" parent="AnimationPlayer"]
 tree_root = SubResource( 20 )
 anim_player = NodePath("..")
-active = true
 parameters/playback = SubResource( 21 )
 
 [connection signal="end_tutorial" from="Cat" to="AnimationPlayer" method="_on_Cat_end_tutorial"]
@@ -1189,5 +1412,6 @@ parameters/playback = SubResource( 21 )
 [connection signal="equip" from="UI/Margin/VBoxContainer/InBag" to="Cat" method="_on_equip"]
 [connection signal="unequip" from="UI/Margin/VBoxContainer/InBag" to="Cat" method="_on_unequip"]
 [connection signal="pressed" from="UI/Margin/VBoxContainer/HideButton" to="UI/Margin/VBoxContainer/InBag/Exit" method="_got_clicked"]
+[connection signal="timeout" from="StatusEffects/Timer" to="StatusEffects" method="_on_Timer_timeout"]
 
 [editable path="Cat"]

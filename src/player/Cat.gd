@@ -43,10 +43,13 @@ func _input(event):
 		event = make_input_local(event)
 		self.clicky(event.position)
 		
-func clicky(event_pos):
+func clicky(event_pos, from_autoclicker = false):
 	Globals.score += 1
 	set_shake(true)
-	_on_play_sound("chonk", rand_range(0.95, 1.05))
+	if from_autoclicker:
+		_on_play_sound("chonk", rand_range(0.95, 1.05), -20)
+	else:
+		_on_play_sound("chonk", rand_range(0.95, 1.05))
 	if rand_range(0, 1) < chance_meow and state != States.MEOWING and state != States.WALKING:
 		_change_state(States.MEOWING)
 	# Spawn love and money
@@ -115,10 +118,10 @@ func _on_Cat_mouse_entered():
 func _on_Cat_mouse_exited():
 	in_cat = false
 	
-func _on_play_sound(type, pitch):
+func _on_play_sound(type, pitch, db = -10):
 	audio_players[audio_player_index].set_pitch_scale(pitch)
 	if type == "chonk":
-		audio_players[audio_player_index].volume_db = -10
+		audio_players[audio_player_index].volume_db = db
 		audio_players[audio_player_index].stream = chonk
 	else:
 		print("ERROR: unknown sound to play: " + type)
@@ -139,6 +142,7 @@ func _on_Sprite_animation_finished():
 		all_sprite.scale.x = -1 * all_sprite.scale.x
 
 func _on_equip(item_id, item_type):
+	_on_unequip(item_type)
 #	print("Equipped " + item_id)
 	Globals.equipped[item_type] = item_id
 	if item_type == "hat":
@@ -150,7 +154,19 @@ func _on_equip(item_id, item_type):
 	else:
 		print("EQUIP: did not implement equipping item type " + item_id)
 
+	# Equip status effects
+	if Globals.items[item_id].has("dpm_per_sec"):
+		print("TODO: increase dpm equip")
+		Globals.dpm += Globals.items[item_id]["dpm_per_sec"]
+
 func _on_unequip(item_type):
+	var unequipped_id = Globals.equipped[item_type]
+	if unequipped_id != "" and Globals.items[unequipped_id].has("dpm_per_sec"):
+		# Unequip status effects, and apply any withdrawal
+		print("TODO: decrease dpm unequip")
+		Globals.dpm -= Globals.items[unequipped_id]["dpm_per_sec"]
+#		Globals.dpm -= Globals.items[unequipped_id]["withdrawal"]
+
 	Globals.equipped[item_type] = ""
 	if item_type == "hat":
 		hat_decor.animation = "default"

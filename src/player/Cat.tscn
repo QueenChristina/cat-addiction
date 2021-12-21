@@ -151,7 +151,7 @@ script = ExtResource( 6 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Base/ShakeBase"]
 frames = SubResource( 12 )
-animation = "walk"
+animation = "sleep"
 frame = 1
 playing = true
 
