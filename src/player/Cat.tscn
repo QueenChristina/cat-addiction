@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://assets/player/cat.png" type="Texture" id=1]
 [ext_resource path="res://src/items/MouthDecor.tscn" type="PackedScene" id=2]
@@ -9,31 +9,31 @@
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
-region = Rect2( 312, 0, 52, 42 )
+region = Rect2( 0, 0, 52, 42 )
 
 [sub_resource type="AtlasTexture" id=2]
 atlas = ExtResource( 1 )
-region = Rect2( 364, 0, 52, 42 )
+region = Rect2( 52, 0, 52, 42 )
 
 [sub_resource type="AtlasTexture" id=3]
 atlas = ExtResource( 1 )
-region = Rect2( 416, 0, 52, 42 )
+region = Rect2( 312, 0, 52, 42 )
 
 [sub_resource type="AtlasTexture" id=4]
 atlas = ExtResource( 1 )
-region = Rect2( 468, 0, 52, 42 )
+region = Rect2( 364, 0, 52, 42 )
 
 [sub_resource type="AtlasTexture" id=5]
 atlas = ExtResource( 1 )
-region = Rect2( 104, 0, 52, 42 )
+region = Rect2( 416, 0, 52, 42 )
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 52, 42 )
+region = Rect2( 468, 0, 52, 42 )
 
 [sub_resource type="AtlasTexture" id=7]
 atlas = ExtResource( 1 )
-region = Rect2( 52, 0, 52, 42 )
+region = Rect2( 104, 0, 52, 42 )
 
 [sub_resource type="AtlasTexture" id=8]
 atlas = ExtResource( 1 )
@@ -53,29 +53,93 @@ region = Rect2( 260, 0, 52, 42 )
 
 [sub_resource type="SpriteFrames" id=12]
 animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
-"loop": true,
-"name": "walk",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 5 ) ],
-"loop": true,
-"name": "stand",
-"speed": 5.0
-}, {
-"frames": [ SubResource( 6 ), SubResource( 7 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ) ],
 "loop": true,
 "name": "sleep",
 "speed": 1.5
 }, {
-"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"frames": [ SubResource( 3 ), SubResource( 4 ), SubResource( 5 ), SubResource( 6 ) ],
 "loop": true,
+"name": "walk",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 7 ) ],
+"loop": true,
+"name": "stand",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ) ],
+"loop": false,
 "name": "meow",
 "speed": 5.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=13]
 extents = Vector2( 17.1908, 16.0608 )
+
+[sub_resource type="Animation" id=14]
+resource_name = "default"
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Base/ShakeBase/Sprite:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("Base/ShakeBase/BodyDecor:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Base/ShakeBase/HatDecor:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 14.0214, -8.9067 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Base/ShakeBase/MouthDecor:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 19.1543, 0.111362 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Base/ShakeBase/Sprite:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
 
 [node name="Cat" type="Area2D"]
 position = Vector2( 0, -19 )
@@ -87,18 +151,18 @@ script = ExtResource( 6 )
 
 [node name="Sprite" type="AnimatedSprite" parent="Base/ShakeBase"]
 frames = SubResource( 12 )
-animation = "stand"
+animation = "sleep"
 playing = true
 
-[node name="MouthDecor" parent="Base/ShakeBase" instance=ExtResource( 2 )]
-position = Vector2( 19.1543, 0.111362 )
+[node name="BodyDecor" parent="Base/ShakeBase" instance=ExtResource( 4 )]
+position = Vector2( 1, 1 )
 
 [node name="HatDecor" parent="Base/ShakeBase" instance=ExtResource( 3 )]
 position = Vector2( 14.0214, -8.9067 )
 playing = true
 
-[node name="BodyDecor" parent="Base/ShakeBase" instance=ExtResource( 4 )]
-position = Vector2( 1, 1 )
+[node name="MouthDecor" parent="Base/ShakeBase" instance=ExtResource( 2 )]
+position = Vector2( 19.1543, 0.111362 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 2, 3 )
@@ -109,6 +173,9 @@ stream = ExtResource( 5 )
 pitch_scale = 1.5
 
 [node name="ShakeTimer" type="Timer" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/default = SubResource( 14 )
 
 [connection signal="mouse_entered" from="." to="." method="_on_Cat_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_Cat_mouse_exited"]

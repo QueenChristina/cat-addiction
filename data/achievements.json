@@ -14,7 +14,7 @@
         "confetti" : "cats",
     },
     "testing" : {
-        "occur_at_count" : 10,
+        "occur_at_count" : 1000,
         "name": "Decimal clickied the cat.",
         "description" : "Congrats!!! You clicky the cat 10 times.",
         "icon" : "welcome",

@@ -55,6 +55,10 @@ func _got_clicked():
 		node.visible = !node.visible
 		if node.visible:
 			emit_signal("opened")
+			get_tree().paused = true
+		else:
+			# closed
+			get_tree().paused = false
 
 func _on_icon_mouse_entered():
 	self.rect_pivot_offset = self.rect_size / 2

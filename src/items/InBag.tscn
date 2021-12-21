@@ -130,11 +130,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -24.5
+margin_top = 8.0
+margin_right = 24.5
+margin_bottom = 22.0
+theme = ExtResource( 3 )
+custom_colors/font_color = Color( 0.74902, 0.247059, 0.156863, 1 )
+text = "Inventory"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
 margin_left = 9.0
-margin_top = 8.0
+margin_top = 23.0
 margin_right = 103.0
-margin_bottom = 53.0
+margin_bottom = 92.0
 theme = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false

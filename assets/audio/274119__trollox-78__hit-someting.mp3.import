@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/274119__trollox-78__hit-someting.mp3-b07d25606f4e67ccdbe5c12f23930302.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/274119__trollox-78__hit-someting.mp3"
+dest_files=[ "res://.import/274119__trollox-78__hit-someting.mp3-b07d25606f4e67ccdbe5c12f23930302.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

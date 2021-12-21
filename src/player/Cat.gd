@@ -1,5 +1,8 @@
 extends Area2D
 
+signal woke_up
+signal end_tutorial
+
 export var chance_meow = 0.05
 
 var love = preload("res://src/money/Love.tscn")
@@ -12,7 +15,7 @@ var audio_player_index = 0
 var money_cling = load("res://assets/audio/Cling.wav")
 var chonk = load("res://assets/audio/Chonk.wav")
 
-enum States {IDLE, SHAKING, MEOWING}
+enum States {IDLE, SHAKING, MEOWING, WALKING}
 var state = States.IDLE
 
 # Shake variables.
@@ -34,12 +37,13 @@ func _ready():
 	for i in range(10):
 		audio_players.append(AudioStreamPlayer.new())
 		self.add_child(audio_players[i])
+
 func _input(event):
 #	if Input.is_action_pressed("click"):
 	if event is InputEventMouse and event.is_action_pressed("click") and in_cat:
-		
 		event = make_input_local(event)
 		self.clicky(event.position)
+		
 func clicky(event_pos):
 	Globals.score += 1
 	set_shake(true)
@@ -54,6 +58,12 @@ func clicky(event_pos):
 		var new_money = money.instance()
 		new_money.connect("play_sound", self, "_on_play_sound")
 		self.add_child(new_money)
+	# Special cases
+	if Globals.score == 1 and sprite.animation == "sleep":
+		_change_state(States.IDLE)
+		emit_signal("woke_up")
+	if Globals.score == 30:
+		emit_signal("end_tutorial")
 
 func set_shake(value = true):
 	shake = value
@@ -75,6 +85,8 @@ func _change_state(new_state):
 			timer.start()
 		States.MEOWING:
 			meow()
+		States.WALKING:
+			walk()
 	state = new_state
 
 func _process(delta):
@@ -123,6 +135,9 @@ func meow():
 	sprite.animation = "meow"
 	sound_meow.set_pitch_scale(rand_range(1.5, 2))
 	sound_meow.play(0)
+	
+func walk():
+	sprite.animation = "walk"
 	
 func _on_Sprite_animation_finished():
 	if sprite.animation == "meow":
