@@ -899,9 +899,6 @@ graph_offset = Vector2( -157, -39 )
 [node name="Cat" parent="." instance=ExtResource( 7 )]
 position = Vector2( 58.8657, 136.164 )
 
-[node name="Sprite" parent="Cat/Base/ShakeBase" index="0"]
-frame = 0
-
 [node name="Money" type="Node2D" parent="."]
 script = ExtResource( 17 )
 

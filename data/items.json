@@ -172,25 +172,29 @@
         "description" : "Increase productivity of the AutoPetter!",
     },
 
+
+    "boost_money_value" : {
+        "name": "Revaluation",
+        "price" : 100,
+        "description" : "Increase value of all currency.",
+        "price_change" : "10 * x + 100",
+        "type" : "perma",
+        "duration" : 10,
+    },
+
     "boost_gems" : {
         "name": "Gem Boost",
         "price" : 100,
         "description" : "Temporarily boost rate of gems.",
         "price_change" : "10 * x + 100",
         "duration" : 10,
+        "type" : "consumable",
         "duration_change" : "something decreasing but not entirely to 0",
     },
     "boost_money_rate" : {
         "name": "Money printers go choo choo",
         "price" : 100,
         "description" : "Temporarily boost the rate of money.",
-        "price_change" : "10 * x + 100",
-        "duration" : 10,
-    },
-    "boost_money_value" : {
-        "name": "Revaluation",
-        "price" : 100,
-        "description" : "Increase value of dollar bill.",
         "price_change" : "10 * x + 100",
         "duration" : 10,
     },

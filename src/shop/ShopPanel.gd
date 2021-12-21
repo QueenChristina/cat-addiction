@@ -25,6 +25,7 @@ func _ready():
 		item.connect("item_selected", self, "_on_item_selected", [item])
 	manage_shop()
 	Globals.connect("randomize_shop", self, "manage_shop")
+
 # TODO: parent should have the logic to control and populate shop panel
 # 	items: Takes in a dictionairy of items by item_id : amount
 # TODO: make amount matter - right now, amount is assumed to be 1
@@ -34,11 +35,20 @@ func populate(item_ids):
 		items_grid.add_child(item)
 		item.init(id, false)
 		item.connect("item_selected", self, "_on_item_selected", [item])
+		
+		if item.type == "perma":
+			items_grid.move_child(item, 0) # Sort permanent items to the front
 	
 # Usually called before populate_shop to clear the shop of previos item displays
 func clear():
 	for item in items_grid.get_children():
 		item.queue_free()
+		
+# Clear out the previously out of stock items
+func clear_oos():
+	for item in items_grid.get_children():
+		if !Globals.buyable_items.has(item.id) or Globals.buyable_items[item.id] == 0:
+			item.queue_free()
 		
 # Called when open shop, to clear out previous selections and look pretty
 func open():
@@ -49,13 +59,15 @@ func open():
 	name_tag.bbcode_text = "Welcome!"
 	description.bbcode_text = "Select an item to view and buy."
 	buy_button.disabled = true
+
 func _process(delta):
 	if visible and not was_open:
-		was_open=true
+		clear_oos()
+		was_open = true
 		sound.stream = shopOpen
 		sound.play(0)
 	if not visible and was_open:
-		was_open=false
+		was_open = false
 		sound.stream = shopClose
 		sound.play(0)
 		

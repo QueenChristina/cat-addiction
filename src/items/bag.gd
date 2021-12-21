@@ -24,12 +24,14 @@ func update_bag():
 		item.queue_free()
 	# Populate bag with current items
 	for id in Globals.inventory.keys():
-		if Globals.inventory[id] > 0:
+		if Globals.inventory[id] > 0: # account for amount, eg. if amount == 0, don't populate
 			var item = item_display.instance();
-			# TODO: account for amount, eg. if amount == 0, don't populate
 			items_grid.add_child(item)
 			item.init(id, true)
 			item.connect("item_selected", self, "_on_item_selected", [item])
+			
+			if item.type != "perma":
+				items_grid.move_child(item, 0) # Sort permanent items to the end
 	button_use.disabled = true
 	description.bbcode_text = ""
 		
