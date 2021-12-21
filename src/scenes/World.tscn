@@ -752,7 +752,6 @@ position = Vector2( 58.8657, 136.164 )
 
 [node name="Sprite" parent="Cat/Base/ShakeBase" index="0"]
 animation = "sleep"
-frame = 0
 
 [node name="Money" type="Node2D" parent="."]
 script = ExtResource( 17 )
@@ -1184,6 +1183,7 @@ active = true
 parameters/playback = SubResource( 21 )
 
 [connection signal="end_tutorial" from="Cat" to="AnimationPlayer" method="_on_Cat_end_tutorial"]
+[connection signal="spawn_money" from="Cat" to="Money" method="_on_spawn_money"]
 [connection signal="woke_up" from="Cat" to="AnimationPlayer" method="_on_Cat_woke_up"]
 [connection signal="opened" from="UI/Margin/TopInfo/BagButton" to="UI/Margin/VBoxContainer/InBag" method="update_bag"]
 [connection signal="equip" from="UI/Margin/VBoxContainer/InBag" to="Cat" method="_on_equip"]

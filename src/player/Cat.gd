@@ -2,17 +2,16 @@ extends Area2D
 
 signal woke_up
 signal end_tutorial
+signal spawn_money
 
 export var chance_meow = 0.05
 
 var love = preload("res://src/money/Love.tscn")
-var money = preload("res://src/money/Money.tscn")
 
 var in_cat = false
 var shake = false setget set_shake
 var audio_players = [] # a list of available audio players to play from
 var audio_player_index = 0
-var money_cling = load("res://assets/audio/Cling.wav")
 var chonk = load("res://assets/audio/Chonk.wav")
 
 enum States {IDLE, SHAKING, MEOWING, WALKING}
@@ -55,9 +54,7 @@ func clicky(event_pos):
 	new_spark.position = event_pos
 	self.add_child(new_spark)
 	if rand_range(0, 1) < Globals.chance_get_money:
-		var new_money = money.instance()
-		new_money.connect("play_sound", self, "_on_play_sound")
-		self.add_child(new_money)
+		emit_signal("spawn_money")
 	# Special cases
 	if Globals.score == 1 and sprite.animation == "sleep":
 		_change_state(States.IDLE)
@@ -120,10 +117,7 @@ func _on_Cat_mouse_exited():
 	
 func _on_play_sound(type, pitch):
 	audio_players[audio_player_index].set_pitch_scale(pitch)
-	if type == "money":
-		audio_players[audio_player_index].volume_db = 0
-		audio_players[audio_player_index].stream = money_cling
-	elif type == "chonk":
+	if type == "chonk":
 		audio_players[audio_player_index].volume_db = -10
 		audio_players[audio_player_index].stream = chonk
 	else:
