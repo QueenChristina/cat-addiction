@@ -27,17 +27,19 @@ func _ready():
 	switchType("coin")
 	if rand_range(0, 1) < chance_cash:
 		switchType("cash")
-	set_pos()
+#	set_pos()
 	
-# Money should pop out from mouse cursor location and move down
-func set_pos():
+# Money should pop out from mouse cursor location and move down - depreciated
+# UPDATE: come from manually set position
+func set_pos(pos):
 	deltax = rand_range(0, 5)
 	stopy = rand_range(get_viewport().get_visible_rect().size.y - 30, get_viewport().get_visible_rect().size.y - 8)
 	a = rand_range(0.08, 1.5)
 	var OFFSET_X = int(rand_range(-12, 12))
 	OFFSET_Y += int(rand_range(0, 4))
 	
-	self.global_position = get_viewport().get_mouse_position()
+#	self.global_position = get_viewport().get_mouse_position()
+	self.global_position = pos
 	
 	if self.global_position.x > get_viewport().get_visible_rect().size.x / 2:
 		xdirection = 1

@@ -10,6 +10,7 @@ onready var items_grid = $ScrollContainer/GridContainer
 onready var item_display = preload("res://src/shop/ItemContainer.tscn")
 onready var button_use = $UseButton
 onready var description = $Description
+onready var warning = $UseButton/Warning
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -55,7 +56,10 @@ func _on_item_selected(item_id, item):
 			button_use.text = "Equip"
 	# Item description
 	description.hide()
-	description.bbcode_text = "[center]" + Globals.items[item_id]["description"] + "[/center]"
+	var desc = Globals.items[item_id]["description"]
+	if Globals.items[item_id].has("dpm_per_sec"):
+		desc += "[color=green]\n+" + str(Globals.items[item_id]["dpm_per_sec"]) + " dpm/sec[/color]*"
+	description.bbcode_text = "[center]" +  desc + "[/center]"
 	description.show()
 
 func _on_Bag_icon_pressed(type):
@@ -73,10 +77,21 @@ func _on_UseButton_pressed():
 			# Swap with currently equipped item and add back to inventory
 			var old_equipped_id = Globals.equipped[selected_item.type]
 			emit_signal("equip", selected_item.id, selected_item.type)
+			# Show warning if applicable
+			if Globals.items[selected_item.id].has("dpm_per_sec"):
+				warning.show()
 		elif button_use.text == "Unequip":
 			button_use.text = "Equip"
+			warning.hide()
 			emit_signal("unequip", selected_item.type)
 
 ## Hacky workaround with UIs to hide when click off of bag
 #func _on_HideButton_pressed():
 #	self.hide()
+
+func _on_UseButton_mouse_entered():
+	if button_use.text == "Unequip" and Globals.items[selected_item.id].has("dpm_per_sec"):
+		warning.show()
+
+func _on_UseButton_mouse_exited():
+	warning.hide()

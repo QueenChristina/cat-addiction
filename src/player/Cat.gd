@@ -2,7 +2,7 @@ extends Area2D
 
 signal woke_up
 signal end_tutorial
-signal spawn_money
+signal spawn_money(pos)
 
 export var chance_meow = 0.05
 
@@ -57,7 +57,7 @@ func clicky(event_pos, from_autoclicker = false):
 	new_spark.position = event_pos
 	self.add_child(new_spark)
 	if rand_range(0, 1) < Globals.chance_get_money:
-		emit_signal("spawn_money")
+		emit_signal("spawn_money", event_pos + self.position) # Make position global for money to spawn at point of click
 	# Special cases
 	if Globals.score == 1 and sprite.animation == "sleep":
 		_change_state(States.IDLE)

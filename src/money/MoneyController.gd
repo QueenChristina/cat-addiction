@@ -14,10 +14,11 @@ func _ready():
 		audio_players.append(AudioStreamPlayer.new())
 		self.add_child(audio_players[i])
 
-func _on_spawn_money():
+func _on_spawn_money(pos):
 	var new_money = money.instance()
 	new_money.connect("play_sound", self, "_on_play_sound")
 	self.add_child(new_money)
+	new_money.set_pos(pos)
 
 func _on_play_sound(type, pitch):
 	audio_players[audio_player_index].set_pitch_scale(pitch)

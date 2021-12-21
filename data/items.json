@@ -135,9 +135,9 @@
     "shots" : {
         "name": "Special Shots",
         "price" : 10,
-        "description" : "Directly into your bod! Yeah! [color=green]\n+1 dpm/sec[/color]*",
+        "description" : "Directly into your bod! Yeah!",
         "type" : "body",
-        "dpm_per_sec" : 1,
+        "dpm_per_sec" : 2,
         "withdrawal" : 1,
     },
 

@@ -69,7 +69,12 @@ func _on_item_selected(item_id, item):
 	# Update item nametag, price, description
 	var price = "$" + str(item.price) if item.price >= 0 else ""
 	name_tag.bbcode_text = item.display_name + "   " + price
-	description.bbcode_text = item.description
+	
+	var desc = item.description
+	if Globals.items[item_id].has("dpm_per_sec") and item.description != "Sold out.":
+		desc += "[color=green]\n+" + str(Globals.items[item_id]["dpm_per_sec"]) + " dpm/sec[/color]*"
+	description.bbcode_text = desc
+	
 	# Disable button if can't afford item -- otherwise, enable and listen for presses
 	if item.price <= Globals.bank and item.price >= 0:
 		# Can afford
